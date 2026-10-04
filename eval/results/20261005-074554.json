@@ -1,0 +1,1622 @@
+{
+  "meta": {
+    "timestamp": "20261005-074554",
+    "dataset": "dataset.jsonl",
+    "n_questions": 29,
+    "n_answerable": 24,
+    "n_unanswerable": 5,
+    "needs_review": 29,
+    "documents": "ACME FlexLogic FX-200 PLC System Manual, ACME VectorDrive VD-500 Variable Frequency Drive Troubleshooting Guide",
+    "chunks": 36,
+    "embedding": "BAAI/bge-small-en-v1.5",
+    "model": "n/a (retrieval only)",
+    "judge_model": "n/a",
+    "top_k": 6
+  },
+  "summary": {
+    "vector": {
+      "hit@1": 0.6666666666666666,
+      "hit@3": 0.8333333333333334,
+      "hit@5": 0.9166666666666666,
+      "mrr": 0.7638888888888888
+    },
+    "bm25": {
+      "hit@1": 0.875,
+      "hit@3": 1.0,
+      "hit@5": 1.0,
+      "mrr": 0.9375
+    },
+    "hybrid": {
+      "hit@1": 0.8333333333333334,
+      "hit@3": 0.9583333333333334,
+      "hit@5": 1.0,
+      "mrr": 0.8854166666666666
+    }
+  },
+  "records": {
+    "vector": [
+      {
+        "id": "q01",
+        "type": "fault_code",
+        "mode": "vector",
+        "question": "What does diagnostic event 16#8085 mean on the FX-200 and how do I fix it?",
+        "retrieval_ms": 82,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0008",
+          "acme-fx200-plc-system-manual::0009",
+          "acme-fx200-plc-system-manual::0010",
+          "acme-fx200-plc-system-manual::0003"
+        ],
+        "rank": 2,
+        "rr": 0.5,
+        "hit@1": 0.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q02",
+        "type": "fault_code",
+        "mode": "vector",
+        "question": "An FX-200 output module reports fault code E-110. What is the cause and what should I do?",
+        "retrieval_ms": 22,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0014",
+          "acme-fx200-plc-system-manual::0008",
+          "acme-fx200-plc-system-manual::0010",
+          "acme-fx200-plc-system-manual::0013",
+          "acme-fx200-plc-system-manual::0017"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q03",
+        "type": "fault_code",
+        "mode": "vector",
+        "question": "The CPU logged event 16#6500. What does it mean and how urgent is it?",
+        "retrieval_ms": 20,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0003",
+          "acme-fx200-plc-system-manual::0006",
+          "acme-fx200-plc-system-manual::0004"
+        ],
+        "rank": 2,
+        "rr": 0.5,
+        "hit@1": 0.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q04",
+        "type": "fault_code",
+        "mode": "vector",
+        "question": "Fault code E-140 keeps appearing on the RS-485 communication module. What is wrong?",
+        "retrieval_ms": 20,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0018",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0017",
+          "acme-fx200-plc-system-manual::0008",
+          "acme-fx200-plc-system-manual::0016"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q05",
+        "type": "fault_code",
+        "mode": "vector",
+        "question": "Our VD-500 drive trips with F-0011. What does that fault mean?",
+        "retrieval_ms": 19,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0005",
+          "acme-vd500-vfd-troubleshooting-guide::0003",
+          "acme-vd500-vfd-troubleshooting-guide::0012",
+          "acme-vd500-vfd-troubleshooting-guide::0002",
+          "acme-vd500-vfd-troubleshooting-guide::0006"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q06",
+        "type": "fault_code",
+        "mode": "vector",
+        "question": "What is fault F-0042 on the VD-500?",
+        "retrieval_ms": 21,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0012",
+          "acme-vd500-vfd-troubleshooting-guide::0007",
+          "acme-vd500-vfd-troubleshooting-guide::0003",
+          "acme-vd500-vfd-troubleshooting-guide::0013"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q07",
+        "type": "fault_code",
+        "mode": "vector",
+        "question": "The drive panel shows A-0910. Do I need to stop the machine?",
+        "retrieval_ms": 23,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0014",
+          "acme-vd500-vfd-troubleshooting-guide::0016",
+          "acme-fx200-plc-system-manual::0003"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q08",
+        "type": "fault_code",
+        "mode": "vector",
+        "question": "How do I check the motor insulation after an F-0021 earth fault?",
+        "retrieval_ms": 22,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0007",
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0009",
+          "acme-vd500-vfd-troubleshooting-guide::0012"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q09",
+        "type": "fault_code",
+        "mode": "vector",
+        "question": "How can I fix event 16#02A4 cycle time exceeded?",
+        "retrieval_ms": 21,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0004",
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0006",
+          "acme-fx200-plc-system-manual::0003",
+          "acme-fx200-plc-system-manual::0001"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q10",
+        "type": "procedure",
+        "mode": "vector",
+        "question": "How do I replace the backup battery on the FX-200?",
+        "retrieval_ms": 21,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0007",
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0008",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0001"
+        ],
+        "rank": 4,
+        "rr": 0.25,
+        "hit@1": 0.0,
+        "hit@3": 0.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q11",
+        "type": "procedure",
+        "mode": "vector",
+        "question": "The FX-200 CPU will not go to RUN. What steps should I follow?",
+        "retrieval_ms": 21,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0006",
+          "acme-fx200-plc-system-manual::0003",
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0008"
+        ],
+        "rank": 4,
+        "rr": 0.25,
+        "hit@1": 0.0,
+        "hit@3": 0.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q12",
+        "type": "procedure",
+        "mode": "vector",
+        "question": "A PROFINET I/O station keeps dropping out. How do I troubleshoot the communication loss?",
+        "retrieval_ms": 25,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0006",
+          "acme-fx200-plc-system-manual::0008",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0010"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q13",
+        "type": "procedure",
+        "mode": "vector",
+        "question": "An analog input shows a wrong value. What should I check?",
+        "retrieval_ms": 27,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0013",
+          "acme-fx200-plc-system-manual::0012",
+          "acme-fx200-plc-system-manual::0010",
+          "acme-fx200-plc-system-manual::0015",
+          "acme-fx200-plc-system-manual::0014"
+        ],
+        "rank": null,
+        "rr": 0.0,
+        "hit@1": 0.0,
+        "hit@3": 0.0,
+        "hit@5": 0.0
+      },
+      {
+        "id": "q14",
+        "type": "procedure",
+        "mode": "vector",
+        "question": "The VD-500 trips on overcurrent while accelerating. What is the troubleshooting procedure?",
+        "retrieval_ms": 28,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0002",
+          "acme-vd500-vfd-troubleshooting-guide::0003",
+          "acme-vd500-vfd-troubleshooting-guide::0004",
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0000"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q15",
+        "type": "procedure",
+        "mode": "vector",
+        "question": "How do I acknowledge a fault on the VD-500?",
+        "retrieval_ms": 22,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0015",
+          "acme-vd500-vfd-troubleshooting-guide::0011",
+          "acme-vd500-vfd-troubleshooting-guide::0013",
+          "acme-fx200-plc-system-manual::0001"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q16",
+        "type": "procedure",
+        "mode": "vector",
+        "question": "The VD-500 shows inverter overtemperature. What should I check?",
+        "retrieval_ms": 23,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0008",
+          "acme-vd500-vfd-troubleshooting-guide::0005",
+          "acme-vd500-vfd-troubleshooting-guide::0015",
+          "acme-vd500-vfd-troubleshooting-guide::0009",
+          "acme-vd500-vfd-troubleshooting-guide::0001"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q17",
+        "type": "concept",
+        "mode": "vector",
+        "question": "What does a flashing red ERROR LED mean on the FX-200 CPU?",
+        "retrieval_ms": 23,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0008",
+          "acme-fx200-plc-system-manual::0003"
+        ],
+        "rank": 2,
+        "rr": 0.5,
+        "hit@1": 0.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q18",
+        "type": "concept",
+        "mode": "vector",
+        "question": "What is the permissible supply voltage range of the FX-200 CPU?",
+        "retrieval_ms": 22,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0007",
+          "acme-fx200-plc-system-manual::0013",
+          "acme-fx200-plc-system-manual::0010",
+          "acme-fx200-plc-system-manual::0003"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q19",
+        "type": "concept",
+        "mode": "vector",
+        "question": "How long must I wait after switching off the VD-500 before working on it?",
+        "retrieval_ms": 23,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-vd500-vfd-troubleshooting-guide::0015",
+          "acme-vd500-vfd-troubleshooting-guide::0014"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q20",
+        "type": "concept",
+        "mode": "vector",
+        "question": "What does parameter P1240 do on the VD-500?",
+        "retrieval_ms": 20,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0015",
+          "acme-vd500-vfd-troubleshooting-guide::0014",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-vd500-vfd-troubleshooting-guide::0003"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q21",
+        "type": "concept",
+        "mode": "vector",
+        "question": "Where should RS-485 termination resistors be installed and what value should they have?",
+        "retrieval_ms": 19,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0006",
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-fx200-plc-system-manual::0018"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q22",
+        "type": "concept",
+        "mode": "vector",
+        "question": "What is the default IP address of a new FX-200 CPU?",
+        "retrieval_ms": 21,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0003",
+          "acme-fx200-plc-system-manual::0009"
+        ],
+        "rank": 3,
+        "rr": 0.3333333333333333,
+        "hit@1": 0.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q23",
+        "type": "concept",
+        "mode": "vector",
+        "question": "How many events does the FX-200 diagnostic buffer keep?",
+        "retrieval_ms": 20,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0004",
+          "acme-fx200-plc-system-manual::0003"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q24",
+        "type": "concept",
+        "mode": "vector",
+        "question": "What happens if the power is switched off during an FX-200 firmware update?",
+        "retrieval_ms": 21,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0003",
+          "acme-fx200-plc-system-manual::0008",
+          "acme-fx200-plc-system-manual::0007",
+          "acme-fx200-plc-system-manual::0011"
+        ],
+        "rank": null,
+        "rr": 0.0,
+        "hit@1": 0.0,
+        "hit@3": 0.0,
+        "hit@5": 0.0
+      },
+      {
+        "id": "q25",
+        "type": "unanswerable",
+        "mode": "vector",
+        "question": "What is the maximum shaft torque of the motor driven by the VD-500 at 50 Hz?",
+        "retrieval_ms": 22,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0015",
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0003",
+          "acme-vd500-vfd-troubleshooting-guide::0009",
+          "acme-vd500-vfd-troubleshooting-guide::0007"
+        ]
+      },
+      {
+        "id": "q26",
+        "type": "unanswerable",
+        "mode": "vector",
+        "question": "How do I program a PID control loop in ladder logic on the FX-200?",
+        "retrieval_ms": 23,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0003",
+          "acme-fx200-plc-system-manual::0012",
+          "acme-fx200-plc-system-manual::0010",
+          "acme-fx200-plc-system-manual::0013"
+        ]
+      },
+      {
+        "id": "q27",
+        "type": "unanswerable",
+        "mode": "vector",
+        "question": "What does fault code E-999 mean?",
+        "retrieval_ms": 22,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0017",
+          "acme-fx200-plc-system-manual::0015",
+          "acme-fx200-plc-system-manual::0014",
+          "acme-fx200-plc-system-manual::0018",
+          "acme-fx200-plc-system-manual::0012"
+        ]
+      },
+      {
+        "id": "q28",
+        "type": "unanswerable",
+        "mode": "vector",
+        "question": "What is the price of a replacement FX-200 CPU module?",
+        "retrieval_ms": 20,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0008",
+          "acme-fx200-plc-system-manual::0009",
+          "acme-fx200-plc-system-manual::0007",
+          "acme-fx200-plc-system-manual::0003"
+        ]
+      },
+      {
+        "id": "q29",
+        "type": "unanswerable",
+        "mode": "vector",
+        "question": "How do I configure an OPC UA server on the FX-200?",
+        "retrieval_ms": 23,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0009",
+          "acme-fx200-plc-system-manual::0006",
+          "acme-fx200-plc-system-manual::0008",
+          "acme-fx200-plc-system-manual::0010"
+        ]
+      }
+    ],
+    "bm25": [
+      {
+        "id": "q01",
+        "type": "fault_code",
+        "mode": "bm25",
+        "question": "What does diagnostic event 16#8085 mean on the FX-200 and how do I fix it?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0008",
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0009",
+          "acme-fx200-plc-system-manual::0005",
+          "acme-fx200-plc-system-manual::0003"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q02",
+        "type": "fault_code",
+        "mode": "bm25",
+        "question": "An FX-200 output module reports fault code E-110. What is the cause and what should I do?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0014",
+          "acme-fx200-plc-system-manual::0017",
+          "acme-fx200-plc-system-manual::0015",
+          "acme-fx200-plc-system-manual::0016",
+          "acme-fx200-plc-system-manual::0013"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q03",
+        "type": "fault_code",
+        "mode": "bm25",
+        "question": "The CPU logged event 16#6500. What does it mean and how urgent is it?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0007",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0003",
+          "acme-fx200-plc-system-manual::0006"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q04",
+        "type": "fault_code",
+        "mode": "bm25",
+        "question": "Fault code E-140 keeps appearing on the RS-485 communication module. What is wrong?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0018",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0016",
+          "acme-fx200-plc-system-manual::0013"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q05",
+        "type": "fault_code",
+        "mode": "bm25",
+        "question": "Our VD-500 drive trips with F-0011. What does that fault mean?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0015",
+          "acme-vd500-vfd-troubleshooting-guide::0005",
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0013"
+        ],
+        "rank": 2,
+        "rr": 0.5,
+        "hit@1": 0.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q06",
+        "type": "fault_code",
+        "mode": "bm25",
+        "question": "What is fault F-0042 on the VD-500?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0010",
+          "acme-vd500-vfd-troubleshooting-guide::0013",
+          "acme-vd500-vfd-troubleshooting-guide::0007",
+          "acme-vd500-vfd-troubleshooting-guide::0003",
+          "acme-vd500-vfd-troubleshooting-guide::0004"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q07",
+        "type": "fault_code",
+        "mode": "bm25",
+        "question": "The drive panel shows A-0910. Do I need to stop the machine?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0016",
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-fx200-plc-system-manual::0003",
+          "acme-fx200-plc-system-manual::0001"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q08",
+        "type": "fault_code",
+        "mode": "bm25",
+        "question": "How do I check the motor insulation after an F-0021 earth fault?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0007",
+          "acme-vd500-vfd-troubleshooting-guide::0003",
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0002",
+          "acme-vd500-vfd-troubleshooting-guide::0000"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q09",
+        "type": "fault_code",
+        "mode": "bm25",
+        "question": "How can I fix event 16#02A4 cycle time exceeded?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0004",
+          "acme-vd500-vfd-troubleshooting-guide::0016",
+          "acme-fx200-plc-system-manual::0018",
+          "acme-fx200-plc-system-manual::0014",
+          "acme-fx200-plc-system-manual::0011"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q10",
+        "type": "procedure",
+        "mode": "bm25",
+        "question": "How do I replace the backup battery on the FX-200?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0007",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0014"
+        ],
+        "rank": 2,
+        "rr": 0.5,
+        "hit@1": 0.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q11",
+        "type": "procedure",
+        "mode": "bm25",
+        "question": "The FX-200 CPU will not go to RUN. What steps should I follow?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0003",
+          "acme-fx200-plc-system-manual::0006",
+          "acme-fx200-plc-system-manual::0002"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q12",
+        "type": "procedure",
+        "mode": "bm25",
+        "question": "A PROFINET I/O station keeps dropping out. How do I troubleshoot the communication loss?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0006",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0012"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q13",
+        "type": "procedure",
+        "mode": "bm25",
+        "question": "An analog input shows a wrong value. What should I check?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0012",
+          "acme-fx200-plc-system-manual::0013",
+          "acme-vd500-vfd-troubleshooting-guide::0013",
+          "acme-vd500-vfd-troubleshooting-guide::0000"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q14",
+        "type": "procedure",
+        "mode": "bm25",
+        "question": "The VD-500 trips on overcurrent while accelerating. What is the troubleshooting procedure?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0004",
+          "acme-vd500-vfd-troubleshooting-guide::0003",
+          "acme-vd500-vfd-troubleshooting-guide::0002",
+          "acme-fx200-plc-system-manual::0007"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q15",
+        "type": "procedure",
+        "mode": "bm25",
+        "question": "How do I acknowledge a fault on the VD-500?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0013",
+          "acme-vd500-vfd-troubleshooting-guide::0007",
+          "acme-vd500-vfd-troubleshooting-guide::0003",
+          "acme-vd500-vfd-troubleshooting-guide::0004"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q16",
+        "type": "procedure",
+        "mode": "bm25",
+        "question": "The VD-500 shows inverter overtemperature. What should I check?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0008",
+          "acme-vd500-vfd-troubleshooting-guide::0009",
+          "acme-fx200-plc-system-manual::0016",
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0000"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q17",
+        "type": "concept",
+        "mode": "bm25",
+        "question": "What does a flashing red ERROR LED mean on the FX-200 CPU?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0018"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q18",
+        "type": "concept",
+        "mode": "bm25",
+        "question": "What is the permissible supply voltage range of the FX-200 CPU?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0013",
+          "acme-vd500-vfd-troubleshooting-guide::0006",
+          "acme-fx200-plc-system-manual::0015",
+          "acme-fx200-plc-system-manual::0007"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q19",
+        "type": "concept",
+        "mode": "bm25",
+        "question": "How long must I wait after switching off the VD-500 before working on it?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0009",
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0008",
+          "acme-vd500-vfd-troubleshooting-guide::0007"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q20",
+        "type": "concept",
+        "mode": "bm25",
+        "question": "What does parameter P1240 do on the VD-500?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0005",
+          "acme-fx200-plc-system-manual::0010",
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0014"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q21",
+        "type": "concept",
+        "mode": "bm25",
+        "question": "Where should RS-485 termination resistors be installed and what value should they have?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0018",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0000"
+        ],
+        "rank": 2,
+        "rr": 0.5,
+        "hit@1": 0.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q22",
+        "type": "concept",
+        "mode": "bm25",
+        "question": "What is the default IP address of a new FX-200 CPU?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0004",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0005",
+          "acme-vd500-vfd-troubleshooting-guide::0010"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q23",
+        "type": "concept",
+        "mode": "bm25",
+        "question": "How many events does the FX-200 diagnostic buffer keep?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0016",
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0009"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q24",
+        "type": "concept",
+        "mode": "bm25",
+        "question": "What happens if the power is switched off during an FX-200 firmware update?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0009",
+          "acme-vd500-vfd-troubleshooting-guide::0004"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q25",
+        "type": "unanswerable",
+        "mode": "bm25",
+        "question": "What is the maximum shaft torque of the motor driven by the VD-500 at 50 Hz?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-fx200-plc-system-manual::0004",
+          "acme-vd500-vfd-troubleshooting-guide::0009",
+          "acme-vd500-vfd-troubleshooting-guide::0003"
+        ]
+      },
+      {
+        "id": "q26",
+        "type": "unanswerable",
+        "mode": "bm25",
+        "question": "How do I program a PID control loop in ladder logic on the FX-200?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0011",
+          "acme-fx200-plc-system-manual::0012",
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0004",
+          "acme-fx200-plc-system-manual::0005"
+        ]
+      },
+      {
+        "id": "q27",
+        "type": "unanswerable",
+        "mode": "bm25",
+        "question": "What does fault code E-999 mean?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0016",
+          "acme-fx200-plc-system-manual::0013",
+          "acme-fx200-plc-system-manual::0017",
+          "acme-fx200-plc-system-manual::0018",
+          "acme-fx200-plc-system-manual::0014"
+        ]
+      },
+      {
+        "id": "q28",
+        "type": "unanswerable",
+        "mode": "bm25",
+        "question": "What is the price of a replacement FX-200 CPU module?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0003"
+        ]
+      },
+      {
+        "id": "q29",
+        "type": "unanswerable",
+        "mode": "bm25",
+        "question": "How do I configure an OPC UA server on the FX-200?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0016",
+          "acme-fx200-plc-system-manual::0009",
+          "acme-fx200-plc-system-manual::0013",
+          "acme-fx200-plc-system-manual::0017"
+        ]
+      }
+    ],
+    "hybrid": [
+      {
+        "id": "q01",
+        "type": "fault_code",
+        "mode": "hybrid",
+        "question": "What does diagnostic event 16#8085 mean on the FX-200 and how do I fix it?",
+        "retrieval_ms": 30,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0008",
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0009",
+          "acme-fx200-plc-system-manual::0010",
+          "acme-fx200-plc-system-manual::0003"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q02",
+        "type": "fault_code",
+        "mode": "hybrid",
+        "question": "An FX-200 output module reports fault code E-110. What is the cause and what should I do?",
+        "retrieval_ms": 34,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0014",
+          "acme-fx200-plc-system-manual::0017",
+          "acme-fx200-plc-system-manual::0013",
+          "acme-fx200-plc-system-manual::0016",
+          "acme-fx200-plc-system-manual::0015"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q03",
+        "type": "fault_code",
+        "mode": "hybrid",
+        "question": "The CPU logged event 16#6500. What does it mean and how urgent is it?",
+        "retrieval_ms": 70,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0007",
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0003",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0006"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q04",
+        "type": "fault_code",
+        "mode": "hybrid",
+        "question": "Fault code E-140 keeps appearing on the RS-485 communication module. What is wrong?",
+        "retrieval_ms": 30,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0018",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0017",
+          "acme-fx200-plc-system-manual::0016",
+          "acme-fx200-plc-system-manual::0001"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q05",
+        "type": "fault_code",
+        "mode": "hybrid",
+        "question": "Our VD-500 drive trips with F-0011. What does that fault mean?",
+        "retrieval_ms": 28,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0005",
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0003",
+          "acme-vd500-vfd-troubleshooting-guide::0015",
+          "acme-vd500-vfd-troubleshooting-guide::0012"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q06",
+        "type": "fault_code",
+        "mode": "hybrid",
+        "question": "What is fault F-0042 on the VD-500?",
+        "retrieval_ms": 24,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0010",
+          "acme-vd500-vfd-troubleshooting-guide::0007",
+          "acme-vd500-vfd-troubleshooting-guide::0013",
+          "acme-vd500-vfd-troubleshooting-guide::0012",
+          "acme-vd500-vfd-troubleshooting-guide::0003"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q07",
+        "type": "fault_code",
+        "mode": "hybrid",
+        "question": "The drive panel shows A-0910. Do I need to stop the machine?",
+        "retrieval_ms": 23,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0016",
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-fx200-plc-system-manual::0003",
+          "acme-vd500-vfd-troubleshooting-guide::0014"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q08",
+        "type": "fault_code",
+        "mode": "hybrid",
+        "question": "How do I check the motor insulation after an F-0021 earth fault?",
+        "retrieval_ms": 25,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0007",
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0003",
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0009"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q09",
+        "type": "fault_code",
+        "mode": "hybrid",
+        "question": "How can I fix event 16#02A4 cycle time exceeded?",
+        "retrieval_ms": 21,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0004",
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0003",
+          "acme-fx200-plc-system-manual::0009"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q10",
+        "type": "procedure",
+        "mode": "hybrid",
+        "question": "How do I replace the backup battery on the FX-200?",
+        "retrieval_ms": 24,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0007",
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0001"
+        ],
+        "rank": 3,
+        "rr": 0.3333333333333333,
+        "hit@1": 0.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q11",
+        "type": "procedure",
+        "mode": "hybrid",
+        "question": "The FX-200 CPU will not go to RUN. What steps should I follow?",
+        "retrieval_ms": 22,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0006",
+          "acme-fx200-plc-system-manual::0003",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0011"
+        ],
+        "rank": 4,
+        "rr": 0.25,
+        "hit@1": 0.0,
+        "hit@3": 0.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q12",
+        "type": "procedure",
+        "mode": "hybrid",
+        "question": "A PROFINET I/O station keeps dropping out. How do I troubleshoot the communication loss?",
+        "retrieval_ms": 23,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0006",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0008",
+          "acme-vd500-vfd-troubleshooting-guide::0010"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q13",
+        "type": "procedure",
+        "mode": "hybrid",
+        "question": "An analog input shows a wrong value. What should I check?",
+        "retrieval_ms": 19,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0013",
+          "acme-fx200-plc-system-manual::0012",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0012"
+        ],
+        "rank": 3,
+        "rr": 0.3333333333333333,
+        "hit@1": 0.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q14",
+        "type": "procedure",
+        "mode": "hybrid",
+        "question": "The VD-500 trips on overcurrent while accelerating. What is the troubleshooting procedure?",
+        "retrieval_ms": 21,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0002",
+          "acme-vd500-vfd-troubleshooting-guide::0003",
+          "acme-vd500-vfd-troubleshooting-guide::0004",
+          "acme-vd500-vfd-troubleshooting-guide::0015"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q15",
+        "type": "procedure",
+        "mode": "hybrid",
+        "question": "How do I acknowledge a fault on the VD-500?",
+        "retrieval_ms": 19,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0013",
+          "acme-vd500-vfd-troubleshooting-guide::0007",
+          "acme-vd500-vfd-troubleshooting-guide::0011",
+          "acme-vd500-vfd-troubleshooting-guide::0003"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q16",
+        "type": "procedure",
+        "mode": "hybrid",
+        "question": "The VD-500 shows inverter overtemperature. What should I check?",
+        "retrieval_ms": 19,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0008",
+          "acme-vd500-vfd-troubleshooting-guide::0009",
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-fx200-plc-system-manual::0016"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q17",
+        "type": "concept",
+        "mode": "hybrid",
+        "question": "What does a flashing red ERROR LED mean on the FX-200 CPU?",
+        "retrieval_ms": 18,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0018",
+          "acme-fx200-plc-system-manual::0003"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q18",
+        "type": "concept",
+        "mode": "hybrid",
+        "question": "What is the permissible supply voltage range of the FX-200 CPU?",
+        "retrieval_ms": 18,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0013",
+          "acme-fx200-plc-system-manual::0007",
+          "acme-fx200-plc-system-manual::0015",
+          "acme-fx200-plc-system-manual::0010"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q19",
+        "type": "concept",
+        "mode": "hybrid",
+        "question": "How long must I wait after switching off the VD-500 before working on it?",
+        "retrieval_ms": 21,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-vd500-vfd-troubleshooting-guide::0015",
+          "acme-vd500-vfd-troubleshooting-guide::0014"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q20",
+        "type": "concept",
+        "mode": "hybrid",
+        "question": "What does parameter P1240 do on the VD-500?",
+        "retrieval_ms": 18,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0015",
+          "acme-vd500-vfd-troubleshooting-guide::0014",
+          "acme-vd500-vfd-troubleshooting-guide::0005",
+          "acme-vd500-vfd-troubleshooting-guide::0001"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q21",
+        "type": "concept",
+        "mode": "hybrid",
+        "question": "Where should RS-485 termination resistors be installed and what value should they have?",
+        "retrieval_ms": 21,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0018",
+          "acme-fx200-plc-system-manual::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-fx200-plc-system-manual::0001"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q22",
+        "type": "concept",
+        "mode": "hybrid",
+        "question": "What is the default IP address of a new FX-200 CPU?",
+        "retrieval_ms": 19,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0004",
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0003"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q23",
+        "type": "concept",
+        "mode": "hybrid",
+        "question": "How many events does the FX-200 diagnostic buffer keep?",
+        "retrieval_ms": 18,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0003",
+          "acme-fx200-plc-system-manual::0005"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q24",
+        "type": "concept",
+        "mode": "hybrid",
+        "question": "What happens if the power is switched off during an FX-200 firmware update?",
+        "retrieval_ms": 19,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0008",
+          "acme-fx200-plc-system-manual::0009"
+        ],
+        "rank": 3,
+        "rr": 0.3333333333333333,
+        "hit@1": 0.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      {
+        "id": "q25",
+        "type": "unanswerable",
+        "mode": "hybrid",
+        "question": "What is the maximum shaft torque of the motor driven by the VD-500 at 50 Hz?",
+        "retrieval_ms": 21,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0003",
+          "acme-vd500-vfd-troubleshooting-guide::0009",
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0007"
+        ]
+      },
+      {
+        "id": "q26",
+        "type": "unanswerable",
+        "mode": "hybrid",
+        "question": "How do I program a PID control loop in ladder logic on the FX-200?",
+        "retrieval_ms": 20,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0012",
+          "acme-fx200-plc-system-manual::0003",
+          "acme-fx200-plc-system-manual::0004",
+          "acme-vd500-vfd-troubleshooting-guide::0011"
+        ]
+      },
+      {
+        "id": "q27",
+        "type": "unanswerable",
+        "mode": "hybrid",
+        "question": "What does fault code E-999 mean?",
+        "retrieval_ms": 19,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0017",
+          "acme-fx200-plc-system-manual::0014",
+          "acme-fx200-plc-system-manual::0018",
+          "acme-fx200-plc-system-manual::0013",
+          "acme-fx200-plc-system-manual::0015"
+        ]
+      },
+      {
+        "id": "q28",
+        "type": "unanswerable",
+        "mode": "hybrid",
+        "question": "What is the price of a replacement FX-200 CPU module?",
+        "retrieval_ms": 18,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0003",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0007",
+          "acme-fx200-plc-system-manual::0009"
+        ]
+      },
+      {
+        "id": "q29",
+        "type": "unanswerable",
+        "mode": "hybrid",
+        "question": "How do I configure an OPC UA server on the FX-200?",
+        "retrieval_ms": 20,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0009",
+          "acme-fx200-plc-system-manual::0013",
+          "acme-fx200-plc-system-manual::0018",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0006"
+        ]
+      }
+    ]
+  }
+}

@@ -19,6 +19,8 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
+    for noisy in ("httpx", "huggingface_hub", "sentence_transformers", "chromadb"):
+        logging.getLogger(noisy).setLevel(logging.WARNING)
     settings = get_settings()
     try:
         stats = ingest(settings, raw_dir=args.raw_dir, index_dir=args.index_dir, rebuild=args.rebuild)

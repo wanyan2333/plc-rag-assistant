@@ -30,7 +30,8 @@ class SentenceTransformerEmbedder:
 
         self.name = model_name
         self._model = SentenceTransformer(model_name)
-        self.dim = self._model.get_sentence_embedding_dimension()
+        get_dim = getattr(self._model, "get_embedding_dimension", None) or self._model.get_sentence_embedding_dimension
+        self.dim = get_dim()
         self._batch_size = batch_size
         self._query_prefix = self.QUERY_INSTRUCTION if "bge" in model_name.lower() else ""
 

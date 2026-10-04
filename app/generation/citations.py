@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import re
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, field_validator
 
 CITE_RE = re.compile(r"\[(\d+(?:\s*,\s*\d+)*)\]")
 _WORD_RE = re.compile(r"[a-z0-9#\-]{3,}")
@@ -12,8 +12,14 @@ _WORD_RE = re.compile(r"[a-z0-9#\-]{3,}")
 
 class Citation(BaseModel):
     doc_title: str
-    page: int
+    page: int = Field(ge=1)
     snippet: str
+
+    @field_validator("snippet")
+    @classmethod
+    def _clean_snippet(cls, value: str) -> str:
+        # Models sometimes return escaped newlines; keep snippets single-line and readable.
+        return " ".join(value.replace("\\n", " ").split())
 
 
 class NumberedCitation(Citation):

@@ -264,17 +264,20 @@ class GeminiLLM:
             ]
 
         response = None
-        for attempt in range(3):
+        attempts = 5
+        for attempt in range(attempts):
             try:
                 response = self.client.models.generate_content(
                     model=self.model, contents=self._to_api(messages), config=config
                 )
                 break
             except self._errors.APIError as exc:
-                retryable = getattr(exc, "code", None) in (429, 500, 503)
-                if not retryable or attempt == 2:
+                retryable = getattr(exc, "code", None) in (429, 500, 502, 503, 504)
+                if not retryable or attempt == attempts - 1:
                     raise LLMError(f"Gemini API error: {exc}") from exc
-                time.sleep(2 * (attempt + 1))
+                delay = 2 ** (attempt + 1)  # 2, 4, 8, 16 s
+                log.warning("Gemini %s, retrying in %ss", getattr(exc, "code", "?"), delay)
+                time.sleep(delay)
 
         candidate = response.candidates[0] if response.candidates else None
         if candidate is None or candidate.content is None:
@@ -390,8 +393,9 @@ def _fake_troubleshoot(question: str, messages: list[Message], tools: list[ToolS
         remedy = re.search(r"Remedy: (.*)", text)
         steps = [s.strip() for s in re.split(r"(?<=[.;])\s+|,\s*then\s+", remedy.group(1)) if s.strip()] if remedy else []
         first_line = text.splitlines()[1] if "\n" in text else text[:200]
+        code = re.search(r"Fault code (\S+?):", text)
         payload = {
-            "fault_code": top.get("fault_code") or None,
+            "fault_code": code.group(1) if code and top.get("fault_code") else None,
             "summary": first_line[:300],
             "likely_causes": [cause.group(1)] if cause else ["See the cited manual section."],
             "diagnostic_steps": steps or ["Follow the procedure in the cited manual section."],

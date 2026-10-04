@@ -19,13 +19,18 @@ class Settings(BaseSettings):
     )
 
     # LLM
-    llm_provider: Literal["anthropic", "fake"] = "anthropic"
+    llm_provider: Literal["anthropic", "gemini", "fake"] = "anthropic"
     anthropic_api_key: str | None = None
     anthropic_model: str = "claude-sonnet-5-5"
     anthropic_effort: Literal["low", "medium", "high"] = "medium"
-    anthropic_fallbacks: str = "default"
-    judge_model: str = "claude-sonnet-5-5"
+    anthropic_fallbacks: str = "default"  # "default" enables server-side refusal fallback, "" disables
+    gemini_api_key: str | None = None
+    gemini_model: str = "gemini-flash-latest"
+    judge_model: str | None = None  # LLM-as-judge model; defaults to the answer model
     max_output_tokens: int = 4096
+    # Optional price override (USD per million tokens) for models not in the built-in table
+    price_input_per_mtok: float | None = None
+    price_output_per_mtok: float | None = None
 
     # Embeddings
     embedding_backend: Literal["sentence-transformers", "hash"] = "sentence-transformers"

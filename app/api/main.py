@@ -8,7 +8,9 @@ from __future__ import annotations
 import json
 import logging
 import time
+from collections import deque
 from contextlib import asynccontextmanager
+from threading import Lock
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.concurrency import run_in_threadpool
@@ -27,6 +29,28 @@ from app.generation.troubleshoot import troubleshoot
 from app.services import Services
 
 log = logging.getLogger("plc_rag.requests")
+
+
+class RateLimiter:
+    """Sliding one-minute window shared by all callers (0 = unlimited)."""
+
+    def __init__(self, per_minute: int, clock=time.monotonic):
+        self.per_minute = per_minute
+        self._clock = clock
+        self._calls: deque[float] = deque()
+        self._lock = Lock()
+
+    def allow(self) -> bool:
+        if self.per_minute <= 0:
+            return True
+        with self._lock:
+            now = self._clock()
+            while self._calls and now - self._calls[0] >= 60:
+                self._calls.popleft()
+            if len(self._calls) >= self.per_minute:
+                return False
+            self._calls.append(now)
+            return True
 
 
 def _model_name(services: Services) -> str:
@@ -51,6 +75,7 @@ def create_app(services: Services | None = None, warmup: bool = True) -> FastAPI
         lifespan=lifespan,
     )
     app.state.services = services or Services()
+    app.state.ask_limiter = RateLimiter(app.state.services.settings.ask_rate_limit_per_min)
 
     def get_services(request: Request) -> Services:
         return request.app.state.services
@@ -112,6 +137,11 @@ def create_app(services: Services | None = None, warmup: bool = True) -> FastAPI
     @app.post("/ask", response_model=AskResponse)
     def ask(body: AskRequest, request: Request) -> AskResponse:
         services = get_services(request)
+        if not request.app.state.ask_limiter.allow():
+            raise HTTPException(
+                status_code=429,
+                detail="The demo is busy (shared rate limit reached). Please try again in a minute.",
+            )
         start = time.perf_counter()
         try:
             retriever, llm = services.retriever, services.llm

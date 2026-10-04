@@ -1,0 +1,9 @@
+.git
+.venv
+.env
+.pytest_cache
+**/__pycache__
+data/
+docs/
+PROJECT_SUMMARY.md
+tests/fixtures/*.pdf

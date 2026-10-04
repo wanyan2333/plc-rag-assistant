@@ -75,7 +75,7 @@ A failure is sent back to the model once as an error tool result. A second failu
 
 **Refusal is a feature, but a dead end isn't.** Both grounded prompts instruct the model to answer *"Not found in the provided manuals"* when the excerpts don't cover the question. The eval set includes unanswerable questions specifically to measure this. Users still want help with general questions (e.g. "how do I tune a PID loop?"), so a second, separate call answers from general knowledge. It is kept in its own `general_answer` field, never mixed with cited content, and labelled in the UI. The evaluation runs with it disabled, so refusal accuracy measures the grounded pipeline only.
 
-**Offline by default in tests.** All 89 tests use a generated synthetic PDF, a deterministic hashing embedder and `FakeLLM`. `pytest` needs no network and no API key.
+**Offline by default in tests.** All 91 tests use a generated synthetic PDF, a deterministic hashing embedder and `FakeLLM`. `pytest` needs no network and no API key.
 
 ## Evaluation results
 
@@ -154,6 +154,12 @@ uv run uvicorn app.api.main:app --port 8000          # API, docs at http://127.0
 uv run streamlit run ui/streamlit_app.py             # UI at http://localhost:8501
 ```
 
+Single-process alternative (no separate API server; the UI runs the FastAPI app in-process):
+
+```bash
+UI_BACKEND=embedded uv run streamlit run ui/streamlit_app.py
+```
+
 Command-line tools:
 
 ```bash
@@ -170,6 +176,31 @@ Example API call:
 curl -X POST http://127.0.0.1:8000/ask -H "Content-Type: application/json" -d "{\"question\": \"What does event 16#8085 mean?\", \"mode\": \"qa\", \"retrieval\": \"hybrid\"}"
 ```
 
+## Deployment (Docker / Hugging Face Spaces)
+
+The [Dockerfile](Dockerfile) builds a self-contained demo:
+- installs CPU-only PyTorch;
+- generates the demo manuals and builds the index at image build time, which also caches the embedding model;
+- runs Streamlit in embedded mode on port 7860.
+
+The only runtime secret is `GEMINI_API_KEY`. Public-demo protection is enabled in the image: a global limit of 5 questions per minute and 3 per browser session.
+
+```bash
+docker build -t plc-rag .
+```
+
+```bash
+docker run -p 7860:7860 -e GEMINI_API_KEY=your-key plc-rag
+```
+
+To publish to a Hugging Face Space (Docker SDK), log in once with a write token (`hf auth login`), then run:
+
+```bash
+uv run python -m scripts.deploy_hf_space
+```
+
+The script uploads only git-tracked files, so `.env`, `data/` and personal notes are never included. Add `GEMINI_API_KEY` as a secret in the Space settings, or pass `--set-gemini-secret` to copy it from your local `.env`.
+
 ## Configuration
 
 All settings live in `.env` (see [.env.example](.env.example)). The main ones:
@@ -183,6 +214,8 @@ All settings live in `.env` (see [.env.example](.env.example)). The main ones:
 | `EMBEDDING_MODEL` | `BAAI/bge-small-en-v1.5` | local sentence-transformers model |
 | `CHUNK_MIN_TOKENS` / `CHUNK_MAX_TOKENS` / `CHUNK_OVERLAP_TOKENS` | 500 / 800 / 80 | chunking |
 | `RETRIEVAL_MODE` / `TOP_K` | `hybrid` / 6 | retrieval defaults |
+| `UI_BACKEND` | `api` | `api` (call FastAPI over HTTP) or `embedded` (run it in-process) |
+| `ASK_RATE_LIMIT_PER_MIN` / `UI_SESSION_LIMIT_PER_MIN` | 0 / 0 | global and per-session question limits for public demos (0 = off) |
 
 ## Project layout
 
@@ -196,7 +229,8 @@ app/
   api/                 main.py, schemas.py
 ui/streamlit_app.py
 eval/                  dataset.jsonl, run.py, metrics.py, judge_prompt.md, results/
-scripts/               PDF generator for demo manuals and the test fixture
+scripts/               demo-manual / test-fixture PDF generator, Hugging Face deploy script
+Dockerfile             single-container demo (Hugging Face Spaces)
 tests/                 offline pytest suite (synthetic PDF + FakeLLM)
 ```
 

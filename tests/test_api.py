@@ -92,6 +92,30 @@ def test_ask_validation(client):
     assert client.post("/ask", json={"question": "x", "retrieval": "magic"}).status_code == 422
 
 
+def test_rate_limiter_sliding_window():
+    from app.api.main import RateLimiter
+
+    now = [0.0]
+    limiter = RateLimiter(2, clock=lambda: now[0])
+    assert limiter.allow() and limiter.allow()
+    assert not limiter.allow()
+    now[0] = 59.9
+    assert not limiter.allow()
+    now[0] = 60.0  # first call left the window
+    assert limiter.allow()
+    assert RateLimiter(0).allow()  # 0 = unlimited
+
+
+def test_ask_rate_limit_returns_429(built_index, settings, embedder):
+    limited = settings.model_copy(update={"ask_rate_limit_per_min": 1})
+    with TestClient(create_app(Services(limited, embedder=embedder, llm=FakeLLM()), warmup=False)) as c:
+        assert c.post("/ask", json={"question": "What does fault code E-205 mean?"}).status_code == 200
+        response = c.post("/ask", json={"question": "What does fault code E-205 mean?"})
+        assert response.status_code == 429
+        assert "try again" in response.json()["detail"]
+        assert c.get("/fault-codes/E-101").status_code == 200  # lookups are not rate limited
+
+
 def test_missing_index_is_reported(tmp_path):
     settings = Settings(_env_file=None, llm_provider="fake", embedding_backend="hash", index_dir=tmp_path)
     with TestClient(create_app(Services(settings, llm=FakeLLM()), warmup=False)) as c:

@@ -1,12 +1,19 @@
-"""Streamlit demo UI. Talks to the FastAPI backend.
+"""Streamlit demo UI.
 
-    uvicorn app.api.main:app          # terminal 1
-    streamlit run ui/streamlit_app.py # terminal 2
+Two backends:
+  UI_BACKEND=api (default)  talk to a running FastAPI server over HTTP
+      uvicorn app.api.main:app          # terminal 1
+      streamlit run ui/streamlit_app.py # terminal 2
+  UI_BACKEND=embedded       run the same FastAPI app in-process (single-process hosting,
+                            e.g. Hugging Face Spaces): streamlit run ui/streamlit_app.py
 """
 
 from __future__ import annotations
 
 import os
+import sys
+import time
+from pathlib import Path
 from urllib.parse import quote
 
 import httpx
@@ -15,6 +22,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 API_URL = os.getenv("API_URL", "http://127.0.0.1:8000").rstrip("/")
+BACKEND = os.getenv("UI_BACKEND", "api").strip().lower()
+# Per-browser-session limit for public demos (0 = unlimited).
+SESSION_LIMIT_PER_MIN = int(os.getenv("UI_SESSION_LIMIT_PER_MIN", "0") or 0)
 
 EXAMPLES = {
     "qa": [
@@ -33,22 +43,61 @@ CONFIDENCE_COLOR = {"high": "green", "medium": "orange", "low": "red"}
 st.set_page_config(page_title="PLC Troubleshooting Assistant", page_icon="🔧", layout="wide")
 
 
+@st.cache_resource(show_spinner="Loading the search index and embedding model…")
+def api_client() -> httpx.Client:
+    """HTTP client for the API, or an in-process TestClient wrapping the same FastAPI app."""
+    if BACKEND == "embedded":
+        root = Path(__file__).resolve().parent.parent
+        if str(root) not in sys.path:
+            sys.path.insert(0, str(root))
+        from fastapi.testclient import TestClient
+
+        from app.api.main import create_app
+
+        app = create_app(warmup=False)
+        try:  # load index + embedding model once, up front (not on the first question)
+            _ = app.state.services.retriever
+        except RuntimeError:
+            pass  # no index yet: /health reports it and the sidebar shows the message
+        return TestClient(app, raise_server_exceptions=False)
+    return httpx.Client(base_url=API_URL, timeout=300)
+
+
+BACKEND_LABEL = "in-process" if BACKEND == "embedded" else API_URL
+
+
 @st.cache_data(ttl=30)
 def get_json(path: str):
-    response = httpx.get(f"{API_URL}{path}", timeout=30)
+    response = api_client().get(path)
     response.raise_for_status()
     return response.json()
 
 
 def ask(question: str, mode: str, retrieval: str, allow_general: bool) -> dict:
-    response = httpx.post(
-        f"{API_URL}/ask",
+    response = api_client().post(
+        "/ask",
         json={"question": question, "mode": mode, "retrieval": retrieval, "allow_general": allow_general},
-        timeout=300,
     )
     if response.status_code != 200:
-        raise RuntimeError(f"{response.status_code}: {response.json().get('detail', response.text)}")
+        try:
+            detail = response.json().get("detail", response.text)
+        except ValueError:
+            detail = response.text
+        raise RuntimeError(f"{response.status_code}: {detail}")
     return response.json()
+
+
+def session_rate_ok() -> bool:
+    """Allow at most SESSION_LIMIT_PER_MIN questions per minute per browser session."""
+    if SESSION_LIMIT_PER_MIN <= 0:
+        return True
+    now = time.time()
+    recent = [t for t in st.session_state.get("ask_times", []) if now - t < 60]
+    if len(recent) >= SESSION_LIMIT_PER_MIN:
+        st.session_state["ask_times"] = recent
+        return False
+    st.session_state["ask_times"] = [*recent, now]
+    return True
 
 
 def citation_cards(citations: list[dict], numbered: bool) -> None:
@@ -86,7 +135,7 @@ with st.sidebar:
     st.header("Knowledge base")
     try:
         health = get_json("/health")
-        st.success(f"API online · {health['llm_provider']} / {health['llm_model']}")
+        st.success(f"Backend online ({BACKEND_LABEL}) · {health['llm_provider']} / {health['llm_model']}")
         documents = get_json("/documents") if health["index_loaded"] else []
         if not documents:
             st.warning(health.get("detail") or "No documents indexed. Run `python -m app.ingest --rebuild`.")
@@ -94,14 +143,14 @@ with st.sidebar:
             st.markdown(f"**{d['doc_title']}**")
             st.caption(f"{d['pages']} pages · {d['chunks']} chunks · {d['fault_code_chunks']} fault codes")
     except httpx.HTTPError as exc:
-        st.error(f"Cannot reach the API at {API_URL}: {exc}")
+        st.error(f"Cannot reach the backend ({BACKEND_LABEL}): {exc}")
 
     st.divider()
     st.subheader("Quick fault-code lookup")
     code = st.text_input("Code", placeholder="e.g. F-0042 or 16#8085")
     if code:
         try:
-            response = httpx.get(f"{API_URL}/fault-codes/{quote(code.strip(), safe='')}", timeout=10)
+            response = api_client().get(f"/fault-codes/{quote(code.strip(), safe='')}")
             if response.status_code == 404:
                 st.info("Not found in the fault tables.")
             else:
@@ -117,6 +166,8 @@ st.caption(
     "Answers come from the ingested manuals with page-level citations; questions the manuals don't cover "
     "get a clearly labelled general-knowledge answer. Always follow lockout/tagout."
 )
+if os.getenv("DEMO_NOTICE"):
+    st.info(os.getenv("DEMO_NOTICE"))
 
 col_mode, col_retrieval = st.columns([2, 1])
 mode_label = col_mode.radio("Mode", ["Q&A", "Troubleshoot"], horizontal=True)
@@ -142,6 +193,9 @@ question = st.text_area(
 )
 
 if st.button("Ask", type="primary", disabled=not question.strip()):
+    if not session_rate_ok():
+        st.warning(f"Demo limit: {SESSION_LIMIT_PER_MIN} questions per minute. Please wait a moment and try again.")
+        st.stop()
     with st.spinner("Searching the manuals…"):
         try:
             st.session_state["result"] = ask(question.strip(), mode, retrieval, allow_general)

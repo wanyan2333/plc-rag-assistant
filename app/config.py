@@ -58,6 +58,9 @@ class Settings(BaseSettings):
     # Troubleshoot agent
     max_tool_rounds: int = 4
 
+    # Global limit on POST /ask across all users (0 = unlimited); protects shared API quotas in public demos
+    ask_rate_limit_per_min: int = 0
+
     def resolve(self, path: Path) -> Path:
         return path if path.is_absolute() else PROJECT_ROOT / path
 

@@ -1,0 +1,3209 @@
+{
+  "meta": {
+    "timestamp": "20261005-075907",
+    "dataset": "dataset.jsonl",
+    "n_questions": 29,
+    "n_answerable": 24,
+    "n_unanswerable": 5,
+    "needs_review": 29,
+    "documents": "ACME FlexLogic FX-200 PLC System Manual, ACME VectorDrive VD-500 Variable Frequency Drive Troubleshooting Guide",
+    "chunks": 36,
+    "embedding": "BAAI/bge-small-en-v1.5",
+    "model": "gemini-flash-lite-latest",
+    "judge_model": "gemini-flash-lite-latest",
+    "top_k": 6
+  },
+  "summary": {
+    "vector": {
+      "hit@1": 0.6666666666666666,
+      "hit@3": 0.8333333333333334,
+      "hit@5": 0.9166666666666666,
+      "mrr": 0.7638888888888888,
+      "judge": 4.586206896551724,
+      "citation_accuracy": 0.8333333333333334,
+      "refusal_accuracy": 1.0,
+      "false_refusal_rate": 0.08333333333333333,
+      "latency_ms": 10033.758620689656,
+      "input_tokens": 1746.0689655172414,
+      "output_tokens": 105.58620689655173,
+      "cost_usd": null,
+      "errors": 0
+    },
+    "bm25": {
+      "hit@1": 0.875,
+      "hit@3": 1.0,
+      "hit@5": 1.0,
+      "mrr": 0.9375,
+      "judge": 4.827586206896552,
+      "citation_accuracy": 0.9409722222222222,
+      "refusal_accuracy": 1.0,
+      "false_refusal_rate": 0.0,
+      "latency_ms": 4784.689655172414,
+      "input_tokens": 2011.6896551724137,
+      "output_tokens": 94.0,
+      "cost_usd": null,
+      "errors": 0
+    },
+    "hybrid": {
+      "hit@1": 0.8333333333333334,
+      "hit@3": 0.9583333333333334,
+      "hit@5": 1.0,
+      "mrr": 0.8854166666666666,
+      "judge": 4.896551724137931,
+      "citation_accuracy": 0.8680555555555555,
+      "refusal_accuracy": 1.0,
+      "false_refusal_rate": 0.0,
+      "latency_ms": 8584.724137931034,
+      "input_tokens": 1784.7586206896551,
+      "output_tokens": 103.44827586206897,
+      "cost_usd": null,
+      "errors": 0
+    }
+  },
+  "records": {
+    "vector": [
+      {
+        "id": "q01",
+        "type": "fault_code",
+        "mode": "vector",
+        "question": "What does diagnostic event 16#8085 mean on the FX-200 and how do I fix it?",
+        "retrieval_ms": 95,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0008",
+          "acme-fx200-plc-system-manual::0009",
+          "acme-fx200-plc-system-manual::0010",
+          "acme-fx200-plc-system-manual::0003"
+        ],
+        "rank": 2,
+        "rr": 0.5,
+        "hit@1": 0.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "Fault code 16#8085 indicates that an I/O module was removed, lost backplane contact, or failed (a signal module was pulled from the backplane, lost backplane contact or failed) [2]. \n\nTo fix it:\n1. Power down the equipment [2].\n2. Re-seat the module [2].\n3. Check the bus connector [2].\n4. Verify the hardware configuration [2].\n\n*Always follow lockout/tagout procedures and the manufacturer's safety instructions before performing electrical work, opening cabinets, wiring, or resetting machines.*",
+        "refused": false,
+        "latency_ms": 3843,
+        "input_tokens": 1433,
+        "output_tokens": 125,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p2"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate's answer perfectly matches all the key facts and troubleshooting steps from the reference.",
+        "judge_tokens": {
+          "input_tokens": 543,
+          "output_tokens": 29
+        }
+      },
+      {
+        "id": "q02",
+        "type": "fault_code",
+        "mode": "vector",
+        "question": "An FX-200 output module reports fault code E-110. What is the cause and what should I do?",
+        "retrieval_ms": 46,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0014",
+          "acme-fx200-plc-system-manual::0008",
+          "acme-fx200-plc-system-manual::0010",
+          "acme-fx200-plc-system-manual::0013",
+          "acme-fx200-plc-system-manual::0017"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "**Cause:** Output current exceeded 1.2 A on a 24 V DC output channel [1].\n\n**Remedy:** Disconnect the load, measure the load resistance, and replace the faulty actuator or cable [1].\n\n*Note: Before performing any electrical work, opening cabinets, wiring, or resetting machines, always follow lockout/tagout procedures and the manufacturer's safety instructions.*",
+        "refused": false,
+        "latency_ms": 1971,
+        "input_tokens": 934,
+        "output_tokens": 82,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p3"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate's answer correctly identifies both the cause and the remedy matching all key facts in the reference.",
+        "judge_tokens": {
+          "input_tokens": 492,
+          "output_tokens": 37
+        }
+      },
+      {
+        "id": "q03",
+        "type": "fault_code",
+        "mode": "vector",
+        "question": "The CPU logged event 16#6500. What does it mean and how urgent is it?",
+        "retrieval_ms": 22,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0003",
+          "acme-fx200-plc-system-manual::0006",
+          "acme-fx200-plc-system-manual::0004"
+        ],
+        "rank": 2,
+        "rr": 0.5,
+        "hit@1": 0.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "Event 16#6500 means that the backup battery voltage is below 2.6 V (the CR2032 backup battery is low) [6]. \n\nIt is urgent to replace the backup battery within 7 days while the CPU is powered (see section 8.1) [6].",
+        "refused": false,
+        "latency_ms": 1242,
+        "input_tokens": 1457,
+        "output_tokens": 67,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p2"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate accurately identifies the meaning of the event code and provides the correct urgency and replacement procedure.",
+        "judge_tokens": {
+          "input_tokens": 476,
+          "output_tokens": 35
+        }
+      },
+      {
+        "id": "q04",
+        "type": "fault_code",
+        "mode": "vector",
+        "question": "Fault code E-140 keeps appearing on the RS-485 communication module. What is wrong?",
+        "retrieval_ms": 21,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0018",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0017",
+          "acme-fx200-plc-system-manual::0008",
+          "acme-fx200-plc-system-manual::0016"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "Fault code E-140 indicates a communication module bus error caused by CRC errors on the RS-485 port exceeding the threshold [1]. Repeated CRC errors usually indicate missing termination, a damaged shield, or two devices with the same address [2]. \n\nRemedy steps:\n1. Check termination resistors at both bus ends, cable shielding, and baud rate settings [1].\n2. Install a 120 ohm termination resistor at both physical ends of the bus and nowhere else [2].\n\nPlease remember to follow lockout/tagout and the manufacturer's safety instructions before performing any electrical work, opening cabinets, or wiring.",
+        "refused": false,
+        "latency_ms": 49184,
+        "input_tokens": 1269,
+        "output_tokens": 133,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p3",
+          "acme-fx200-plc-system-manual:p4"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer correctly identifies the fault code and includes all key troubleshooting steps from the reference, along with harmless extra details and safety reminders.",
+        "judge_tokens": {
+          "input_tokens": 542,
+          "output_tokens": 43
+        }
+      },
+      {
+        "id": "q05",
+        "type": "fault_code",
+        "mode": "vector",
+        "question": "Our VD-500 drive trips with F-0011. What does that fault mean?",
+        "retrieval_ms": 22,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0005",
+          "acme-vd500-vfd-troubleshooting-guide::0003",
+          "acme-vd500-vfd-troubleshooting-guide::0012",
+          "acme-vd500-vfd-troubleshooting-guide::0002",
+          "acme-vd500-vfd-troubleshooting-guide::0006"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "Fault code F-0011 means DC bus overvoltage [1]. Its cause is regenerative energy from an overhauling load or too short deceleration ramp, or mains voltage that is too high [1]. \n\n*Reminder: Because this troubleshooting may involve electrical work, opening cabinets, or wiring, always follow lockout/tagout procedures and the manufacturer's safety instructions [6].*",
+        "refused": false,
+        "latency_ms": 1134,
+        "input_tokens": 1518,
+        "output_tokens": 80,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-vd500-vfd-troubleshooting-guide:p1",
+          "acme-vd500-vfd-troubleshooting-guide:p1"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 4,
+        "judge_reason": "Accurately identifies the fault meaning and causes, but misses the specific troubleshooting steps mentioned in the reference.",
+        "judge_tokens": {
+          "input_tokens": 507,
+          "output_tokens": 37
+        }
+      },
+      {
+        "id": "q06",
+        "type": "fault_code",
+        "mode": "vector",
+        "question": "What is fault F-0042 on the VD-500?",
+        "retrieval_ms": 23,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0012",
+          "acme-vd500-vfd-troubleshooting-guide::0007",
+          "acme-vd500-vfd-troubleshooting-guide::0003",
+          "acme-vd500-vfd-troubleshooting-guide::0013"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "Not found in the provided manuals. The manuals do contain fault and alarm codes, parameter settings, and troubleshooting procedures for the ACME VectorDrive VD-500 series [1].",
+        "refused": true,
+        "latency_ms": 1126,
+        "input_tokens": 1498,
+        "output_tokens": 37,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-vd500-vfd-troubleshooting-guide:p1"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 1,
+        "judge_reason": "The reference contains the answer for fault F-0042, but the candidate incorrectly stated it was not found.",
+        "judge_tokens": {
+          "input_tokens": 441,
+          "output_tokens": 35
+        }
+      },
+      {
+        "id": "q07",
+        "type": "fault_code",
+        "mode": "vector",
+        "question": "The drive panel shows A-0910. Do I need to stop the machine?",
+        "retrieval_ms": 21,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0014",
+          "acme-vd500-vfd-troubleshooting-guide::0016",
+          "acme-fx200-plc-system-manual::0003"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "No, an alarm (indicated by the prefix A) is a warning and the drive continues to run [1]. \n\nFor alarm A-0910 (Fan maintenance due), the cooling fan has exceeded 40 000 operating hours, and you should replace the fan at the next shutdown [4].",
+        "refused": false,
+        "latency_ms": 2148,
+        "input_tokens": 1928,
+        "output_tokens": 66,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-vd500-vfd-troubleshooting-guide:p1",
+          "acme-vd500-vfd-troubleshooting-guide:p2"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate correctly identifies that the drive does not need to be stopped and accurately includes all key details from the reference.",
+        "judge_tokens": {
+          "input_tokens": 465,
+          "output_tokens": 39
+        }
+      },
+      {
+        "id": "q08",
+        "type": "fault_code",
+        "mode": "vector",
+        "question": "How do I check the motor insulation after an F-0021 earth fault?",
+        "retrieval_ms": 26,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0007",
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0009",
+          "acme-vd500-vfd-troubleshooting-guide::0012"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "Whenever performing electrical work, opening cabinets, wiring, or resetting machines, always follow lockout/tagout procedures and the manufacturer's safety instructions [2, 3].\n\nTo check the motor insulation after an F-0021 earth fault:\n1. Disconnect the motor cable [1].\n2. Measure the insulation resistance, which must be above 1 Mohm at 500 V DC [1].",
+        "refused": false,
+        "latency_ms": 1347,
+        "input_tokens": 1944,
+        "output_tokens": 88,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-vd500-vfd-troubleshooting-guide:p2",
+          "acme-vd500-vfd-troubleshooting-guide:p3",
+          "acme-vd500-vfd-troubleshooting-guide:p1"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer correctly includes all key facts from the reference and adds standard safety warnings, which are permitted.",
+        "judge_tokens": {
+          "input_tokens": 498,
+          "output_tokens": 32
+        }
+      },
+      {
+        "id": "q09",
+        "type": "fault_code",
+        "mode": "vector",
+        "question": "How can I fix event 16#02A4 cycle time exceeded?",
+        "retrieval_ms": 19,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0004",
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0006",
+          "acme-fx200-plc-system-manual::0003",
+          "acme-fx200-plc-system-manual::0001"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "To fix fault code 16#02A4 (Cycle time exceeded), apply the following remedy:\n* Optimise the program [1].\n* Move slow tasks to a cyclic interrupt OB [1].\n* Increase the maximum cycle time in the CPU properties (default is 150 ms) [1].\n\n*Please follow lockout/tagout and the manufacturer's safety instructions before performing any electrical work, opening cabinets, wiring, or resetting machines.*",
+        "refused": false,
+        "latency_ms": 1414,
+        "input_tokens": 1439,
+        "output_tokens": 97,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p2"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer correctly and completely provides all key facts from the reference.",
+        "judge_tokens": {
+          "input_tokens": 499,
+          "output_tokens": 24
+        }
+      },
+      {
+        "id": "q10",
+        "type": "procedure",
+        "mode": "vector",
+        "question": "How do I replace the backup battery on the FX-200?",
+        "retrieval_ms": 21,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0007",
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0008",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0001"
+        ],
+        "rank": 4,
+        "rr": 0.25,
+        "hit@1": 0.0,
+        "hit@3": 0.0,
+        "hit@5": 1.0,
+        "answer": "Before performing any electrical work, opening control cabinets, or servicing the controller, always switch off the supply, apply lockout/tagout according to the plant safety procedure, and verify the absence of voltage with a suitable tester [1, 2].\n\nTo replace the backup battery on the FX-200, replace it within seven days when the MAINT LED lights yellow and event 16#6500 is reported [1, 4]. Replace the battery while the CPU is powered so that the real-time clock and the diagnostic buffer are not lost [4]. \n\nFollow these steps:\n1. Open the front cover of the CPU [4].\n2. Pull out the battery holder using the tab [4].\n3. Insert a new CR2032 battery with the positive side facing up [1, 4].\n4. Push the holder back until it clicks and close the cover [4]. \n\nThe MAINT LED will switch off within 10 seconds [4].",
+        "refused": false,
+        "latency_ms": 1572,
+        "input_tokens": 2513,
+        "output_tokens": 207,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p2",
+          "acme-fx200-plc-system-manual:p1",
+          "acme-fx200-plc-system-manual:p4"
+        ],
+        "citation_accuracy": 0.3333333333333333,
+        "judge_score": 5,
+        "judge_reason": "The candidate provided all the correct steps and key facts from the reference, along with safe extra details.",
+        "judge_tokens": {
+          "input_tokens": 613,
+          "output_tokens": 31
+        }
+      },
+      {
+        "id": "q11",
+        "type": "procedure",
+        "mode": "vector",
+        "question": "The FX-200 CPU will not go to RUN. What steps should I follow?",
+        "retrieval_ms": 20,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0006",
+          "acme-fx200-plc-system-manual::0003",
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0008"
+        ],
+        "rank": 4,
+        "rr": 0.25,
+        "hit@1": 0.0,
+        "hit@3": 0.0,
+        "hit@5": 1.0,
+        "answer": "To troubleshoot why the FX-200 CPU will not go to RUN, follow these steps and check the status indicators:\n\n* **Check safety instructions:** Before opening the control cabinet or touching any terminal, switch off the supply, apply lockout/tagout according to the plant safety procedure, and verify the absence of voltage with a suitable tester [1].\n* **Check the RUN/STOP LED status:** \n  * If the RUN/STOP LED is steady yellow, the CPU is in STOP [1]. \n  * If fault code 16#02A0 (\"CPU changed to STOP: STOP switch operated\") is present, set the mode selector on the front of the CPU to RUN, or issue a run command from the engineering station [1, 3].\n* **Check for errors and active diagnostics:**\n  * If the ERROR LED is flashing red, a diagnostic event (such as a module fault or program error) is active; read the diagnostic buffer [1].\n  * If the ERROR LED is steady red, it indicates a hardware fault of the CPU [1]. Cycle the power; if the LED stays on, replace the CPU [1]. \n  * If fault code 16#8131 (\"Watchdog reset of the CPU\") occurred, read the diagnostic buffer, update the firmware to the latest version, and contact ACME support if the event repeats [4].\n  * If fault code 16#8085 (\"I/O module removed or not responding\") is present, power down, re-seat the module, check the bus connector, and verify the hardware configuration [5].\n  * If fault code 16#8086 (\"Module configuration mismatch\") is present, install the configured module type or update the hardware configuration and download it [6].\n  * If fault code 16#39C4 (\"Distributed I/O station failure\") is present, check the network cable, switch ports, and power supply of the I/O station [2].",
+        "refused": false,
+        "latency_ms": 2264,
+        "input_tokens": 1717,
+        "output_tokens": 425,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p1",
+          "acme-fx200-plc-system-manual:p2",
+          "acme-fx200-plc-system-manual:p2",
+          "acme-fx200-plc-system-manual:p3",
+          "acme-fx200-plc-system-manual:p2",
+          "acme-fx200-plc-system-manual:p2"
+        ],
+        "citation_accuracy": 0.16666666666666666,
+        "judge_score": 3,
+        "judge_reason": "The candidate includes some correct steps from the reference but adds extraneous diagnostic codes and troubleshooting steps not present in the reference text.",
+        "judge_tokens": {
+          "input_tokens": 846,
+          "output_tokens": 40
+        }
+      },
+      {
+        "id": "q12",
+        "type": "procedure",
+        "mode": "vector",
+        "question": "A PROFINET I/O station keeps dropping out. How do I troubleshoot the communication loss?",
+        "retrieval_ms": 32,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0006",
+          "acme-fx200-plc-system-manual::0008",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0010"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "To troubleshoot the communication loss with a PROFINET I/O station, follow these steps:\n\n1. Check the LINK LED on the CPU port and on the I/O station; if the LED is off, there is no physical connection [4].\n2. Inspect the Ethernet cable and connectors, and replace damaged cables [4]. Industrial cables must not exceed 100 m between two devices [4].\n3. Verify that the device name and IP address of the station match the project configuration [4].\n4. Check the 24 V supply of the I/O station [1, 4].\n5. Use the topology view to locate the interrupted port, then acknowledge event 16#39C4 once communication is restored [4]. \n\n*(Note: When performing electrical checks, opening cabinets, or wiring, always follow lockout/tagout procedures and the manufacturer's safety instructions.)*",
+        "refused": false,
+        "latency_ms": 1476,
+        "input_tokens": 1771,
+        "output_tokens": 191,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p2",
+          "acme-fx200-plc-system-manual:p2"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer accurately includes all key facts and troubleshooting steps from the reference without contradiction.",
+        "judge_tokens": {
+          "input_tokens": 617,
+          "output_tokens": 33
+        }
+      },
+      {
+        "id": "q13",
+        "type": "procedure",
+        "mode": "vector",
+        "question": "An analog input shows a wrong value. What should I check?",
+        "retrieval_ms": 18,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0013",
+          "acme-fx200-plc-system-manual::0012",
+          "acme-fx200-plc-system-manual::0010",
+          "acme-fx200-plc-system-manual::0015",
+          "acme-fx200-plc-system-manual::0014"
+        ],
+        "rank": null,
+        "rr": 0.0,
+        "hit@1": 0.0,
+        "hit@3": 0.0,
+        "hit@5": 0.0,
+        "answer": "To diagnose an analog input showing a wrong value, please follow these steps based on the fault codes:\n\n* **For fault code E-102 (Analog input overflow):** The signal is above the upper limit of the measuring range (more than 22.8 mA). Check the sensor range and the module measuring range setting [1].\n* **For fault code E-101 (Analog input wire break):** The input current is below 3.6 mA on a 4-20 mA channel. Check the transmitter wiring and loop supply, and verify the sensor with a loop calibrator [2].\n\n*When performing any electrical work, opening cabinets, wiring, or resetting machines, always follow lockout/tagout procedures and the manufacturer's safety instructions.*",
+        "refused": false,
+        "latency_ms": 48862,
+        "input_tokens": 1480,
+        "output_tokens": 161,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p3",
+          "acme-fx200-plc-system-manual:p3"
+        ],
+        "citation_accuracy": 0.0,
+        "judge_score": 3,
+        "judge_reason": "The candidate provides good detail on fault codes, but misses several key points from the reference such as checking the DIAG LED, measuring the signal with a multimeter, and verifying the cable shield grounding.",
+        "judge_tokens": {
+          "input_tokens": 566,
+          "output_tokens": 54
+        }
+      },
+      {
+        "id": "q14",
+        "type": "procedure",
+        "mode": "vector",
+        "question": "The VD-500 trips on overcurrent while accelerating. What is the troubleshooting procedure?",
+        "retrieval_ms": 31,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0002",
+          "acme-vd500-vfd-troubleshooting-guide::0003",
+          "acme-vd500-vfd-troubleshooting-guide::0004",
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0000"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "To troubleshoot the ACME VectorDrive VD-500 when it trips on overcurrent during acceleration (fault code F-0001), perform the following steps:\n\n*Before performing any electrical work, opening cabinets, wiring, or resetting machines, always follow lockout/tagout procedures and the manufacturer's safety instructions [4, 5].*\n\n1. Isolate the drive, apply lockout/tagout, and wait 5 minutes for the DC bus to discharge (confirming the voltage between terminals DC+ and DC- is below 50 V DC) [4, 5].\n2. Note in which phase the trip occurs (acceleration is F-0001) [4].\n3. Disconnect the motor cable at the drive and measure the motor insulation resistance phase-to-earth using a 500 V megohmmeter (a minimum of 1 Mohm is required) [1, 4]. Never perform insulation tests on the drive terminals themselves [5].\n4. Rotate the motor shaft by hand to check for mechanical jamming, bearing damage, or to free the mechanical load [1, 4].\n5. Check that the motor data parameters P0304 to P0310 match the motor rating plate, and run the motor identification by setting P1910 = 1 [1, 4, 5].\n6. Increase the acceleration ramp time P1120 in steps of 50 percent and test again [1, 4, 5].",
+        "refused": false,
+        "latency_ms": 1882,
+        "input_tokens": 1933,
+        "output_tokens": 321,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-vd500-vfd-troubleshooting-guide:p1",
+          "acme-vd500-vfd-troubleshooting-guide:p3",
+          "acme-vd500-vfd-troubleshooting-guide:p1"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate's answer includes all the key steps and parameters from the reference while incorporating safe industrial practices.",
+        "judge_tokens": {
+          "input_tokens": 778,
+          "output_tokens": 32
+        }
+      },
+      {
+        "id": "q15",
+        "type": "procedure",
+        "mode": "vector",
+        "question": "How do I acknowledge a fault on the VD-500?",
+        "retrieval_ms": 19,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0015",
+          "acme-vd500-vfd-troubleshooting-guide::0011",
+          "acme-vd500-vfd-troubleshooting-guide::0013",
+          "acme-fx200-plc-system-manual::0001"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "To acknowledge a fault on the VD-500, you can use one of the following methods:\n* Press the FN key on the basic operator panel BOP-5 [1].\n* Apply a rising edge to the digital input set in parameter P2103 [1].\n* Send the acknowledge bit via the fieldbus control word [1].\n\n*(Note: Always follow lockout/tagout procedures and the manufacturer's safety instructions before performing any electrical work or opening cabinets [1].)*",
+        "refused": false,
+        "latency_ms": 1337,
+        "input_tokens": 1937,
+        "output_tokens": 104,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-vd500-vfd-troubleshooting-guide:p1"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer accurately and completely matches all the methods listed in the reference answer.",
+        "judge_tokens": {
+          "input_tokens": 493,
+          "output_tokens": 27
+        }
+      },
+      {
+        "id": "q16",
+        "type": "procedure",
+        "mode": "vector",
+        "question": "The VD-500 shows inverter overtemperature. What should I check?",
+        "retrieval_ms": 19,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0008",
+          "acme-vd500-vfd-troubleshooting-guide::0005",
+          "acme-vd500-vfd-troubleshooting-guide::0015",
+          "acme-vd500-vfd-troubleshooting-guide::0009",
+          "acme-vd500-vfd-troubleshooting-guide::0001"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "When performing electrical work, opening cabinets, wiring, or resetting machines, always follow lockout/tagout procedures and the manufacturer's safety instructions [5]. \n\nFor inverter overtemperature (fault code F-0030), check the following:\n* Check that the cooling fan runs when the drive is enabled [5].\n* Check the cooling fan, clean the heat sink (clean dust with dry compressed air), and reduce the switching frequency P1800 [1, 5].\n* Measure the cabinet temperature, as the drive is rated for 45 degC without derating [5]. (An ambient temperature above 45 degC can cause this fault [1].)\n* Alternatively, reduce the load [5].",
+        "refused": false,
+        "latency_ms": 1473,
+        "input_tokens": 1961,
+        "output_tokens": 153,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-vd500-vfd-troubleshooting-guide:p2",
+          "acme-vd500-vfd-troubleshooting-guide:p3"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer accurately includes all key facts and troubleshooting steps from the reference without contradiction.",
+        "judge_tokens": {
+          "input_tokens": 569,
+          "output_tokens": 33
+        }
+      },
+      {
+        "id": "q17",
+        "type": "concept",
+        "mode": "vector",
+        "question": "What does a flashing red ERROR LED mean on the FX-200 CPU?",
+        "retrieval_ms": 22,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0008",
+          "acme-fx200-plc-system-manual::0003"
+        ],
+        "rank": 2,
+        "rr": 0.5,
+        "hit@1": 0.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "A flashing red ERROR LED indicates that a diagnostic event is active, such as a module fault or a program error [2]. To resolve this, read the diagnostic buffer [2]. \n\n*Reminder: Before opening the control cabinet or touching any terminals, always follow lockout/tagout procedures according to plant safety policies, switch off the supply, and verify the absence of voltage with a suitable tester [2].*",
+        "refused": false,
+        "latency_ms": 1247,
+        "input_tokens": 2191,
+        "output_tokens": 83,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p1"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer matches all key facts of the reference and includes safe handling reminders which do not reduce the score.",
+        "judge_tokens": {
+          "input_tokens": 474,
+          "output_tokens": 33
+        }
+      },
+      {
+        "id": "q18",
+        "type": "concept",
+        "mode": "vector",
+        "question": "What is the permissible supply voltage range of the FX-200 CPU?",
+        "retrieval_ms": 19,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0007",
+          "acme-fx200-plc-system-manual::0013",
+          "acme-fx200-plc-system-manual::0010",
+          "acme-fx200-plc-system-manual::0003"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "The permissible supply voltage range of the FX-200 CPU is 20.4 to 28.8 V DC [1]. \n\n*Note: When performing electrical work or wiring, always follow lockout/tagout procedures and the manufacturer's safety instructions [1].*",
+        "refused": false,
+        "latency_ms": 1242,
+        "input_tokens": 1691,
+        "output_tokens": 60,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p1"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 4,
+        "judge_reason": "The candidate provides the correct voltage range but misses the nominal value and the fuse requirement mentioned in the reference.",
+        "judge_tokens": {
+          "input_tokens": 445,
+          "output_tokens": 32
+        }
+      },
+      {
+        "id": "q19",
+        "type": "concept",
+        "mode": "vector",
+        "question": "How long must I wait after switching off the VD-500 before working on it?",
+        "retrieval_ms": 20,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-vd500-vfd-troubleshooting-guide::0015",
+          "acme-vd500-vfd-troubleshooting-guide::0014"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "Before working on the drive, apply lockout/tagout to the mains isolator, wait at least 5 minutes after switching off for the DC bus capacitors to discharge, and measure the DC bus voltage between terminals DC+ and DC- to confirm it is below 50 V DC [1, 2].",
+        "refused": false,
+        "latency_ms": 1254,
+        "input_tokens": 2251,
+        "output_tokens": 63,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-vd500-vfd-troubleshooting-guide:p1",
+          "acme-vd500-vfd-troubleshooting-guide:p3"
+        ],
+        "citation_accuracy": 0.5,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer accurately includes all key facts and safety requirements from the reference.",
+        "judge_tokens": {
+          "input_tokens": 457,
+          "output_tokens": 26
+        }
+      },
+      {
+        "id": "q20",
+        "type": "concept",
+        "mode": "vector",
+        "question": "What does parameter P1240 do on the VD-500?",
+        "retrieval_ms": 18,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0015",
+          "acme-vd500-vfd-troubleshooting-guide::0014",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-vd500-vfd-troubleshooting-guide::0003"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "Parameter P1240 sets the Vdc controller, with a default value of 1, where 1 indicates that the Vdc-max controller is enabled and automatically extends deceleration [1].",
+        "refused": false,
+        "latency_ms": 895,
+        "input_tokens": 1792,
+        "output_tokens": 40,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-vd500-vfd-troubleshooting-guide:p1"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer accurately describes parameter P1240 and its default setting matching the reference.",
+        "judge_tokens": {
+          "input_tokens": 435,
+          "output_tokens": 30
+        }
+      },
+      {
+        "id": "q21",
+        "type": "concept",
+        "mode": "vector",
+        "question": "Where should RS-485 termination resistors be installed and what value should they have?",
+        "retrieval_ms": 25,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0006",
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-fx200-plc-system-manual::0018"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "For RS-485 networks, install a 120 ohm termination resistor at both physical ends of the bus and nowhere else [1].",
+        "refused": false,
+        "latency_ms": 50207,
+        "input_tokens": 2576,
+        "output_tokens": 30,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p4"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer matches all key facts of the reference accurately and completely.",
+        "judge_tokens": {
+          "input_tokens": 402,
+          "output_tokens": 25
+        }
+      },
+      {
+        "id": "q22",
+        "type": "concept",
+        "mode": "vector",
+        "question": "What is the default IP address of a new FX-200 CPU?",
+        "retrieval_ms": 18,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0003",
+          "acme-fx200-plc-system-manual::0009"
+        ],
+        "rank": 3,
+        "rr": 0.3333333333333333,
+        "hit@1": 0.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "The default IP address of a new CPU is 192.168.0.1 with subnet mask 255.255.255.0 [3].",
+        "refused": false,
+        "latency_ms": 1399,
+        "input_tokens": 2041,
+        "output_tokens": 41,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p4"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer matches the reference completely, including the IP address and subnet mask.",
+        "judge_tokens": {
+          "input_tokens": 421,
+          "output_tokens": 27
+        }
+      },
+      {
+        "id": "q23",
+        "type": "concept",
+        "mode": "vector",
+        "question": "How many events does the FX-200 diagnostic buffer keep?",
+        "retrieval_ms": 18,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0004",
+          "acme-fx200-plc-system-manual::0003"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "The FX-200 diagnostic buffer stores the latest 50 events with a time stamp, an event ID in the format 16#xxxx and a plain-text description [1].",
+        "refused": false,
+        "latency_ms": 1035,
+        "input_tokens": 2172,
+        "output_tokens": 40,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p2"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer correctly provides the exact number of events stored and matches all key details from the reference.",
+        "judge_tokens": {
+          "input_tokens": 426,
+          "output_tokens": 36
+        }
+      },
+      {
+        "id": "q24",
+        "type": "concept",
+        "mode": "vector",
+        "question": "What happens if the power is switched off during an FX-200 firmware update?",
+        "retrieval_ms": 22,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0003",
+          "acme-fx200-plc-system-manual::0008",
+          "acme-fx200-plc-system-manual::0007",
+          "acme-fx200-plc-system-manual::0011"
+        ],
+        "rank": null,
+        "rr": 0.0,
+        "hit@1": 0.0,
+        "hit@3": 0.0,
+        "hit@5": 0.0,
+        "answer": "When performing electrical work, opening cabinets, wiring, or resetting machines, always follow lockout/tagout procedures and the manufacturer's safety instructions [1].\n\nNot found in the provided manuals. The manuals do state that when the MAINT LED is flashing yellow (indicating that a firmware update is in progress), you must not switch off the supply [1].",
+        "refused": true,
+        "latency_ms": 1244,
+        "input_tokens": 1705,
+        "output_tokens": 71,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p1"
+        ],
+        "citation_accuracy": 0.0,
+        "judge_score": 3,
+        "judge_reason": "The candidate partially answers the question by stating you must not switch off the supply, but misses the critical consequence that the CPU may become inoperable and require repair.",
+        "judge_tokens": {
+          "input_tokens": 457,
+          "output_tokens": 49
+        }
+      },
+      {
+        "id": "q25",
+        "type": "unanswerable",
+        "mode": "vector",
+        "question": "What is the maximum shaft torque of the motor driven by the VD-500 at 50 Hz?",
+        "retrieval_ms": 20,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0015",
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0003",
+          "acme-vd500-vfd-troubleshooting-guide::0009",
+          "acme-vd500-vfd-troubleshooting-guide::0007"
+        ],
+        "answer": "Not found in the provided manuals. The manuals do contain information on fault codes, alarm codes, electrical safety, and parameters such as rated motor current P0305 for the VD-500 series variable frequency drive [1, 2, 3, 4, 5, 6].",
+        "refused": true,
+        "latency_ms": 1106,
+        "input_tokens": 1461,
+        "output_tokens": 63,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-vd500-vfd-troubleshooting-guide:p2",
+          "acme-vd500-vfd-troubleshooting-guide:p1",
+          "acme-vd500-vfd-troubleshooting-guide:p1",
+          "acme-vd500-vfd-troubleshooting-guide:p2",
+          "acme-vd500-vfd-troubleshooting-guide:p2",
+          "acme-vd500-vfd-troubleshooting-guide:p2"
+        ],
+        "refusal_correct": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate correctly identified that the information is not in the manuals and provided a valid refusal.",
+        "judge_tokens": {
+          "input_tokens": 428,
+          "output_tokens": 34
+        }
+      },
+      {
+        "id": "q26",
+        "type": "unanswerable",
+        "mode": "vector",
+        "question": "How do I program a PID control loop in ladder logic on the FX-200?",
+        "retrieval_ms": 17,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0003",
+          "acme-fx200-plc-system-manual::0012",
+          "acme-fx200-plc-system-manual::0010",
+          "acme-fx200-plc-system-manual::0013"
+        ],
+        "answer": "Not found in the provided manuals. The provided manuals do contain information on system hardware specifications, operating modes, installation, wiring, LED status indicators, and diagnostic fault codes for the ACME FlexLogic FX-200 PLC [1, 2, 3, 4, 5, 6].",
+        "refused": true,
+        "latency_ms": 1191,
+        "input_tokens": 1695,
+        "output_tokens": 63,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p1",
+          "acme-fx200-plc-system-manual:p2",
+          "acme-fx200-plc-system-manual:p3",
+          "acme-fx200-plc-system-manual:p3",
+          "acme-fx200-plc-system-manual:p3",
+          "acme-fx200-plc-system-manual:p2"
+        ],
+        "refusal_correct": 1.0,
+        "judge_score": 5,
+        "judge_reason": "Correctly identified that the information is not in the manuals.",
+        "judge_tokens": {
+          "input_tokens": 424,
+          "output_tokens": 23
+        }
+      },
+      {
+        "id": "q27",
+        "type": "unanswerable",
+        "mode": "vector",
+        "question": "What does fault code E-999 mean?",
+        "retrieval_ms": 19,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0017",
+          "acme-fx200-plc-system-manual::0015",
+          "acme-fx200-plc-system-manual::0014",
+          "acme-fx200-plc-system-manual::0018",
+          "acme-fx200-plc-system-manual::0012"
+        ],
+        "answer": "Not found in the provided manuals. The provided manuals do contain fault codes and troubleshooting remedies for other system errors, such as E-101, E-110, E-111, E-130, E-140, and F-0051 [1, 2, 3, 4, 5, 6].",
+        "refused": true,
+        "latency_ms": 1103,
+        "input_tokens": 915,
+        "output_tokens": 79,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p3",
+          "acme-fx200-plc-system-manual:p3",
+          "acme-fx200-plc-system-manual:p3",
+          "acme-fx200-plc-system-manual:p3",
+          "acme-fx200-plc-system-manual:p3",
+          "acme-vd500-vfd-troubleshooting-guide:p2"
+        ],
+        "refusal_correct": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate correctly states the information is not found in the manuals without hallucinating any facts.",
+        "judge_tokens": {
+          "input_tokens": 432,
+          "output_tokens": 34
+        }
+      },
+      {
+        "id": "q28",
+        "type": "unanswerable",
+        "mode": "vector",
+        "question": "What is the price of a replacement FX-200 CPU module?",
+        "retrieval_ms": 20,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0008",
+          "acme-fx200-plc-system-manual::0009",
+          "acme-fx200-plc-system-manual::0007",
+          "acme-fx200-plc-system-manual::0003"
+        ],
+        "answer": "Not found in the provided manuals. The manuals do contain technical specifications, operating modes, installation wiring instructions, LED status indicators, and diagnostic event IDs for the FX-200 system [1, 2, 3, 4, 5, 6].",
+        "refused": true,
+        "latency_ms": 53409,
+        "input_tokens": 1701,
+        "output_tokens": 55,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p1",
+          "acme-fx200-plc-system-manual:p2",
+          "acme-fx200-plc-system-manual:p2",
+          "acme-fx200-plc-system-manual:p2",
+          "acme-fx200-plc-system-manual:p2",
+          "acme-fx200-plc-system-manual:p3"
+        ],
+        "refusal_correct": 1.0,
+        "judge_score": 5,
+        "judge_reason": "Correctly states that the information is not in the manuals.",
+        "judge_tokens": {
+          "input_tokens": 412,
+          "output_tokens": 23
+        }
+      },
+      {
+        "id": "q29",
+        "type": "unanswerable",
+        "mode": "vector",
+        "question": "How do I configure an OPC UA server on the FX-200?",
+        "retrieval_ms": 26,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0009",
+          "acme-fx200-plc-system-manual::0006",
+          "acme-fx200-plc-system-manual::0008",
+          "acme-fx200-plc-system-manual::0010"
+        ],
+        "answer": "Not found in the provided manuals. The provided manuals do contain information on the system's hardware specifications, operating modes, installation, wiring, LED status indicators, and diagnostic fault codes.",
+        "refused": true,
+        "latency_ms": 53372,
+        "input_tokens": 1713,
+        "output_tokens": 37,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [],
+        "refusal_correct": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate correctly stated that the information is not found in the manuals.",
+        "judge_tokens": {
+          "input_tokens": 395,
+          "output_tokens": 25
+        }
+      }
+    ],
+    "bm25": [
+      {
+        "id": "q01",
+        "type": "fault_code",
+        "mode": "bm25",
+        "question": "What does diagnostic event 16#8085 mean on the FX-200 and how do I fix it?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0008",
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0009",
+          "acme-fx200-plc-system-manual::0005",
+          "acme-fx200-plc-system-manual::0003"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "Fault code 16#8085 means that an I/O module was removed, not responding, pulled from the backplane, lost backplane contact, or failed [1].\n\nTo fix it:\n1. Power down the system [1].\n2. Re-seat the module [1].\n3. Check the bus connector [1].\n4. Verify the hardware configuration [1].\n\n*Always follow lockout/tagout and the manufacturer's safety instructions before performing electrical work, opening cabinets, wiring, or resetting machines.*",
+        "refused": false,
+        "latency_ms": 1076,
+        "input_tokens": 959,
+        "output_tokens": 114,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p2"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer contains all key facts from the reference and provides the correct steps to fix the diagnostic event.",
+        "judge_tokens": {
+          "input_tokens": 532,
+          "output_tokens": 37
+        }
+      },
+      {
+        "id": "q02",
+        "type": "fault_code",
+        "mode": "bm25",
+        "question": "An FX-200 output module reports fault code E-110. What is the cause and what should I do?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0014",
+          "acme-fx200-plc-system-manual::0017",
+          "acme-fx200-plc-system-manual::0015",
+          "acme-fx200-plc-system-manual::0016",
+          "acme-fx200-plc-system-manual::0013"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "*Reminder: Always follow lockout/tagout procedures and the manufacturer's safety instructions before performing any electrical work, opening cabinets, wiring, or resetting machines.*\n\n* **Cause:** Output current exceeded 1.2 A on a 24 V DC output channel [1].\n* **Remedy:** Disconnect the load, measure the load resistance and replace the faulty actuator or cable [1].",
+        "refused": false,
+        "latency_ms": 1119,
+        "input_tokens": 917,
+        "output_tokens": 82,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p3"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer matches all key facts of the reference and includes an appropriate safety reminder.",
+        "judge_tokens": {
+          "input_tokens": 492,
+          "output_tokens": 33
+        }
+      },
+      {
+        "id": "q03",
+        "type": "fault_code",
+        "mode": "bm25",
+        "question": "The CPU logged event 16#6500. What does it mean and how urgent is it?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0007",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0003",
+          "acme-fx200-plc-system-manual::0006"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "Event 16#6500 indicates a backup battery low fault, meaning the voltage of the CR2032 backup battery has dropped below 2.6 V [1, 2]. \n\nYou must replace the backup battery within 7 days while the CPU is powered so that the real-time clock and the diagnostic buffer are not lost [1, 2]. Please ensure you follow lockout/tagout and the manufacturer's safety instructions before opening cabinets or performing electrical work.",
+        "refused": false,
+        "latency_ms": 1217,
+        "input_tokens": 1323,
+        "output_tokens": 102,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p2",
+          "acme-fx200-plc-system-manual:p4"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate's answer correctly identifies the meaning of event 16#6500, the voltage threshold, the 7-day replacement timeframe, and the requirement to keep the CPU powered.",
+        "judge_tokens": {
+          "input_tokens": 511,
+          "output_tokens": 57
+        }
+      },
+      {
+        "id": "q04",
+        "type": "fault_code",
+        "mode": "bm25",
+        "question": "Fault code E-140 keeps appearing on the RS-485 communication module. What is wrong?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0018",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0016",
+          "acme-fx200-plc-system-manual::0013"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "Fault code E-140 indicates a communication module bus error caused by CRC errors on the RS-485 port exceeding the threshold [1]. Repeated CRC errors usually indicate missing termination resistors, a damaged cable shield, or two devices with the same address [2].\n\nTo resolve this:\n1. Check the termination resistors at both physical ends of the bus (a 120 ohm resistor should be installed at both ends and nowhere else) [1, 2].\n2. Check the cable shielding [1].\n3. Check the baud rate settings [1].\n\n*Always follow lockout/tagout procedures and the manufacturer's safety instructions before performing electrical work, opening cabinets, or wiring.*",
+        "refused": false,
+        "latency_ms": 1485,
+        "input_tokens": 1721,
+        "output_tokens": 146,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p3",
+          "acme-fx200-plc-system-manual:p4"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer accurately includes all key facts from the reference and incorporates standard safety reminders without contradicting anything.",
+        "judge_tokens": {
+          "input_tokens": 555,
+          "output_tokens": 36
+        }
+      },
+      {
+        "id": "q05",
+        "type": "fault_code",
+        "mode": "bm25",
+        "question": "Our VD-500 drive trips with F-0011. What does that fault mean?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0015",
+          "acme-vd500-vfd-troubleshooting-guide::0005",
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0013"
+        ],
+        "rank": 2,
+        "rr": 0.5,
+        "hit@1": 0.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "Fault code F-0011 means a DC bus overvoltage [2]. \n\nThe causes of this fault include:\n* Regenerative energy from an overhauling load [2]\n* Too short a deceleration ramp [2]\n* Mains voltage too high [2]",
+        "refused": false,
+        "latency_ms": 1105,
+        "input_tokens": 2421,
+        "output_tokens": 59,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-vd500-vfd-troubleshooting-guide:p1"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 4,
+        "judge_reason": "The candidate correctly identifies the fault and causes, but misses the troubleshooting solutions provided in the reference.",
+        "judge_tokens": {
+          "input_tokens": 486,
+          "output_tokens": 35
+        }
+      },
+      {
+        "id": "q06",
+        "type": "fault_code",
+        "mode": "bm25",
+        "question": "What is fault F-0042 on the VD-500?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0010",
+          "acme-vd500-vfd-troubleshooting-guide::0013",
+          "acme-vd500-vfd-troubleshooting-guide::0007",
+          "acme-vd500-vfd-troubleshooting-guide::0003",
+          "acme-vd500-vfd-troubleshooting-guide::0004"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "Fault F-0042 on the VD-500 is a fieldbus communication timeout [1]. \n\n* **Cause:** No telegram from the PLC within the monitoring time P2040 (default 100 ms) [1].\n* **Remedy:** Check the fieldbus cable and connectors, PLC status, and the monitoring time setting [1].\n\nPlease follow lockout/tagout and the manufacturer's safety instructions before performing any electrical work or checking wiring.",
+        "refused": false,
+        "latency_ms": 979,
+        "input_tokens": 920,
+        "output_tokens": 102,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-vd500-vfd-troubleshooting-guide:p2"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer accurately includes all key facts and remedies from the reference without contradiction.",
+        "judge_tokens": {
+          "input_tokens": 506,
+          "output_tokens": 27
+        }
+      },
+      {
+        "id": "q07",
+        "type": "fault_code",
+        "mode": "bm25",
+        "question": "The drive panel shows A-0910. Do I need to stop the machine?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0016",
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-fx200-plc-system-manual::0003",
+          "acme-fx200-plc-system-manual::0001"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "No, you do not need to stop the machine. \n\nAn alarm (indicated by the prefix A) is a warning and the drive continues to run [2]. Alarm code A-0910 indicates that the cooling fan has exceeded 40 000 operating hours, and you should plan to replace the fan at the next shutdown [1].",
+        "refused": false,
+        "latency_ms": 53031,
+        "input_tokens": 3159,
+        "output_tokens": 74,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-vd500-vfd-troubleshooting-guide:p2",
+          "acme-vd500-vfd-troubleshooting-guide:p1"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate correctly identifies that the machine does not need to be stopped and accurately includes all key details from the reference.",
+        "judge_tokens": {
+          "input_tokens": 473,
+          "output_tokens": 34
+        }
+      },
+      {
+        "id": "q08",
+        "type": "fault_code",
+        "mode": "bm25",
+        "question": "How do I check the motor insulation after an F-0021 earth fault?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0007",
+          "acme-vd500-vfd-troubleshooting-guide::0003",
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0002",
+          "acme-vd500-vfd-troubleshooting-guide::0000"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "Please ensure you follow lockout/tagout procedures and the manufacturer's safety instructions before performing any electrical work.\n\nTo check the motor insulation after an F-0021 earth fault:\n1. Isolate the drive, apply lockout/tagout, and wait 5 minutes for the DC bus to discharge [3].\n2. Disconnect the motor cable at the drive [3] (or disconnect the motor cable generally [1]).\n3. Measure the insulation resistance phase-to-earth using a 500 V megohmmeter [3] (or measure at 500 V DC [1]). \n4. Verify that the measured resistance is above 1 Mohm [1, 3].",
+        "refused": false,
+        "latency_ms": 52566,
+        "input_tokens": 1960,
+        "output_tokens": 151,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-vd500-vfd-troubleshooting-guide:p2",
+          "acme-vd500-vfd-troubleshooting-guide:p3"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer correctly includes all key steps and limits from the reference without contradiction.",
+        "judge_tokens": {
+          "input_tokens": 561,
+          "output_tokens": 32
+        }
+      },
+      {
+        "id": "q09",
+        "type": "fault_code",
+        "mode": "bm25",
+        "question": "How can I fix event 16#02A4 cycle time exceeded?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0004",
+          "acme-vd500-vfd-troubleshooting-guide::0016",
+          "acme-fx200-plc-system-manual::0018",
+          "acme-fx200-plc-system-manual::0014",
+          "acme-fx200-plc-system-manual::0011"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "To fix fault code 16#02A4 (Cycle time exceeded), use the following remedies:\n\n* Optimise the program [1].\n* Move slow tasks to a cyclic interrupt OB [1].\n* Increase the maximum cycle time in the CPU properties (default is 150 ms) [1].\n\n*Note: Always follow lockout/tagout procedures and the manufacturer's safety instructions before opening cabinets or performing electrical work.*",
+        "refused": false,
+        "latency_ms": 1549,
+        "input_tokens": 1402,
+        "output_tokens": 93,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p2"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate correctly includes all key facts and remedies from the reference answer.",
+        "judge_tokens": {
+          "input_tokens": 495,
+          "output_tokens": 30
+        }
+      },
+      {
+        "id": "q10",
+        "type": "procedure",
+        "mode": "bm25",
+        "question": "How do I replace the backup battery on the FX-200?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0007",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0014"
+        ],
+        "rank": 2,
+        "rr": 0.5,
+        "hit@1": 0.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "*Safety reminder: Before opening the control cabinet or touching any terminal, switch off the supply, apply lockout/tagout according to plant safety procedures, and verify the absence of voltage with a suitable tester [3].*\n\nTo replace the backup battery (type CR2032, 3 V) on the FX-200 while keeping the CPU powered so that the real-time clock and diagnostic buffer are not lost, perform the following steps [1, 2]:\n\n1. Open the front cover of the CPU [2].\n2. Pull out the battery holder using the tab [2].\n3. Insert a new CR2032 battery with the positive side facing up [2].\n4. Push the holder back until it clicks and close the cover [2]. \n\nThe MAINT LED will switch off within 10 seconds [2].",
+        "refused": false,
+        "latency_ms": 1569,
+        "input_tokens": 2484,
+        "output_tokens": 179,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p2",
+          "acme-fx200-plc-system-manual:p4",
+          "acme-fx200-plc-system-manual:p1"
+        ],
+        "citation_accuracy": 0.3333333333333333,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer contains all the correct steps and key facts from the reference, along with safe practices.",
+        "judge_tokens": {
+          "input_tokens": 585,
+          "output_tokens": 36
+        }
+      },
+      {
+        "id": "q11",
+        "type": "procedure",
+        "mode": "bm25",
+        "question": "The FX-200 CPU will not go to RUN. What steps should I follow?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0003",
+          "acme-fx200-plc-system-manual::0006",
+          "acme-fx200-plc-system-manual::0002"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "To resolve an issue where the FX-200 CPU does not go to RUN, follow these steps:\n\n1. Check that the mode selector is in the RUN position [1].\n2. Check the ERROR LED [1]. If it flashes red, read the diagnostic buffer and correct the first reported event [1].\n3. Verify that the hardware configuration in the project matches the installed modules (event 16#8086 indicates a mismatch) [1].\n4. Compile and download the complete project, including the hardware configuration [1].\n5. If the CPU still remains in STOP, reset the CPU to factory settings and download the project again [1].",
+        "refused": false,
+        "latency_ms": 1309,
+        "input_tokens": 2972,
+        "output_tokens": 140,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p2"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer matches all the key steps and details provided in the reference answer.",
+        "judge_tokens": {
+          "input_tokens": 561,
+          "output_tokens": 27
+        }
+      },
+      {
+        "id": "q12",
+        "type": "procedure",
+        "mode": "bm25",
+        "question": "A PROFINET I/O station keeps dropping out. How do I troubleshoot the communication loss?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0006",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0012"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "*Warning: When performing electrical work, opening cabinets, wiring, or resetting machines, always follow lockout/tagout procedures and the manufacturer's safety instructions [4].*\n\nTo troubleshoot communication loss with an I/O station, follow these steps:\n\n1. Check the LINK LED on the CPU port and on the I/O station; if the LED is off, there is no physical connection [2].\n2. Inspect the Ethernet cable and connectors, and replace any damaged cables (industrial cables must not exceed 100 m between two devices) [2].\n3. Verify that the device name and IP address of the station match the project configuration [2].\n4. Check the 24 V supply of the I/O station [2].\n5. Use the topology view to locate the interrupted port, and then acknowledge event 16#39C4 once communication is restored [2].",
+        "refused": false,
+        "latency_ms": 1464,
+        "input_tokens": 2505,
+        "output_tokens": 189,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p2",
+          "acme-fx200-plc-system-manual:p1"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer includes all key troubleshooting steps, limits, and codes from the reference without contradictions.",
+        "judge_tokens": {
+          "input_tokens": 615,
+          "output_tokens": 35
+        }
+      },
+      {
+        "id": "q13",
+        "type": "procedure",
+        "mode": "bm25",
+        "question": "An analog input shows a wrong value. What should I check?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0012",
+          "acme-fx200-plc-system-manual::0013",
+          "acme-vd500-vfd-troubleshooting-guide::0013",
+          "acme-vd500-vfd-troubleshooting-guide::0000"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "To troubleshoot an analog input showing the wrong value, check the following:\n\n1. Check the module DIAG LED and the active fault code [1]:\n   - **E-101 (wire break):** Indicates an input current below 3.6 mA on a 4-20 mA channel [1, 2]. Check the transmitter wiring, loop supply, and verify the sensor using a loop calibrator [2].\n   - **E-102 (overflow):** Indicates the signal is above the upper limit of the measuring range (greater than 22.8 mA) [1, 3]. Check the sensor range and the module measuring range setting [3].\n2. Verify that the configured measuring range matches the sensor (for example, comparing 4-20 mA versus 0-10 V) [1].\n3. Measure the signal directly at the terminal using a calibrated multimeter [1].\n4. Check that the cable shield is grounded at one end only to prevent ground loops [1].\n\n*Note: Before performing any electrical work, opening cabinets, or checking wiring, ensure you follow lockout/tagout procedures and the manufacturer's safety instructions [1, 6].*",
+        "refused": false,
+        "latency_ms": 1619,
+        "input_tokens": 2694,
+        "output_tokens": 254,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p2",
+          "acme-fx200-plc-system-manual:p3",
+          "acme-fx200-plc-system-manual:p3",
+          "acme-fx200-plc-system-manual:p1"
+        ],
+        "citation_accuracy": 0.25,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer covers all points of the reference accurately and adds helpful context without contradicting it.",
+        "judge_tokens": {
+          "input_tokens": 659,
+          "output_tokens": 29
+        }
+      },
+      {
+        "id": "q14",
+        "type": "procedure",
+        "mode": "bm25",
+        "question": "The VD-500 trips on overcurrent while accelerating. What is the troubleshooting procedure?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0004",
+          "acme-vd500-vfd-troubleshooting-guide::0003",
+          "acme-vd500-vfd-troubleshooting-guide::0002",
+          "acme-fx200-plc-system-manual::0007"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "When performing electrical work, opening cabinets, wiring or resetting machines, always follow lockout/tagout and the manufacturer's safety instructions [1].\n\nTo troubleshoot the VD-500 drive tripping on overcurrent during acceleration (F-0001), follow these steps:\n\n1. Isolate the drive, apply lockout/tagout and wait 5 minutes for the DC bus to discharge [1].\n2. Disconnect the motor cable at the drive and measure the motor insulation resistance phase-to-earth with a 500 V megohmmeter (minimum 1 Mohm) [1, 4].\n3. Rotate the motor shaft by hand to check for mechanical jamming or bearing damage [1].\n4. Check that the motor data P0304 to P0310 match the rating plate and run the motor identification (P1910 = 1) [1].\n5. Increase the ramp times P1120 / P1121 in steps of 50 percent and test again [1] (or specifically increase the P1120 acceleration time [4]).\n6. After any repair, acknowledge the fault, run the motor without load first and then check the motor current under normal load against the rated current P0305 [1].",
+        "refused": false,
+        "latency_ms": 1689,
+        "input_tokens": 1382,
+        "output_tokens": 275,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-vd500-vfd-troubleshooting-guide:p3",
+          "acme-vd500-vfd-troubleshooting-guide:p1"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate's answer includes all key facts and steps from the reference without missing critical information or contradicting it.",
+        "judge_tokens": {
+          "input_tokens": 732,
+          "output_tokens": 38
+        }
+      },
+      {
+        "id": "q15",
+        "type": "procedure",
+        "mode": "bm25",
+        "question": "How do I acknowledge a fault on the VD-500?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0013",
+          "acme-vd500-vfd-troubleshooting-guide::0007",
+          "acme-vd500-vfd-troubleshooting-guide::0003",
+          "acme-vd500-vfd-troubleshooting-guide::0004"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "To acknowledge a fault on the VD-500, do one of the following:\n* Press the FN key on the operator panel [1].\n* Apply a rising edge to the digital input set in P2103 [1].\n* Send the acknowledge bit via the fieldbus control word [1].",
+        "refused": false,
+        "latency_ms": 1141,
+        "input_tokens": 1467,
+        "output_tokens": 66,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-vd500-vfd-troubleshooting-guide:p1"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer accurately includes all three methods of fault acknowledgment listed in the reference.",
+        "judge_tokens": {
+          "input_tokens": 455,
+          "output_tokens": 27
+        }
+      },
+      {
+        "id": "q16",
+        "type": "procedure",
+        "mode": "bm25",
+        "question": "The VD-500 shows inverter overtemperature. What should I check?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0008",
+          "acme-vd500-vfd-troubleshooting-guide::0009",
+          "acme-fx200-plc-system-manual::0016",
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0000"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "When performing electrical work, opening cabinets, wiring, or resetting machines, always follow lockout/tagout procedures and the manufacturer's safety instructions.\n\nTo troubleshoot inverter overtemperature (fault code F-0030) on the VD-500, check the following:\n* Check whether the cooling fan runs when the drive is enabled [1, 4].\n* Inspect for a blocked fan, a dirty heat sink, or an ambient temperature above 45 °C [1]. You can clean dust from the heat sink using dry compressed air [4].\n* Measure the cabinet temperature, as the drive is rated for 45 °C without derating [4].\n* Reduce the switching frequency P1800 or reduce the load [1, 4].",
+        "refused": false,
+        "latency_ms": 1612,
+        "input_tokens": 2424,
+        "output_tokens": 162,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-vd500-vfd-troubleshooting-guide:p2",
+          "acme-vd500-vfd-troubleshooting-guide:p3"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer correctly includes all the key facts from the reference and incorporates proper safety reminders.",
+        "judge_tokens": {
+          "input_tokens": 578,
+          "output_tokens": 34
+        }
+      },
+      {
+        "id": "q17",
+        "type": "concept",
+        "mode": "bm25",
+        "question": "What does a flashing red ERROR LED mean on the FX-200 CPU?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0018"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "A flashing red ERROR LED means that a diagnostic event is active, for example a module fault or a program error [1]. To resolve this, read the diagnostic buffer [1].",
+        "refused": false,
+        "latency_ms": 1125,
+        "input_tokens": 3039,
+        "output_tokens": 36,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p1"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer accurately captures all key facts from the reference without missing or contradicting anything.",
+        "judge_tokens": {
+          "input_tokens": 427,
+          "output_tokens": 33
+        }
+      },
+      {
+        "id": "q18",
+        "type": "concept",
+        "mode": "bm25",
+        "question": "What is the permissible supply voltage range of the FX-200 CPU?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0013",
+          "acme-vd500-vfd-troubleshooting-guide::0006",
+          "acme-fx200-plc-system-manual::0015",
+          "acme-fx200-plc-system-manual::0007"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "The permissible supply voltage range of the FX-200 CPU is 20.4 to 28.8 V DC [1].",
+        "refused": false,
+        "latency_ms": 1148,
+        "input_tokens": 1705,
+        "output_tokens": 30,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p1"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 4,
+        "judge_reason": "The answer is correct and provides the voltage range, though it omits the nominal voltage and fuse details.",
+        "judge_tokens": {
+          "input_tokens": 415,
+          "output_tokens": 37
+        }
+      },
+      {
+        "id": "q19",
+        "type": "concept",
+        "mode": "bm25",
+        "question": "How long must I wait after switching off the VD-500 before working on it?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0009",
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0008",
+          "acme-vd500-vfd-troubleshooting-guide::0007"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "Wait at least 5 minutes after switching off before working on the drive [1]. \n\n*Always follow lockout/tagout procedures and the manufacturer's safety instructions before opening cabinets or performing electrical work [1].*",
+        "refused": false,
+        "latency_ms": 1073,
+        "input_tokens": 2434,
+        "output_tokens": 45,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-vd500-vfd-troubleshooting-guide:p1"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 4,
+        "judge_reason": "The candidate is correct about the 5-minute wait time, but misses the additional requirement to measure the DC bus voltage to ensure it is below 50 V DC.",
+        "judge_tokens": {
+          "input_tokens": 439,
+          "output_tokens": 51
+        }
+      },
+      {
+        "id": "q20",
+        "type": "concept",
+        "mode": "bm25",
+        "question": "What does parameter P1240 do on the VD-500?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0005",
+          "acme-fx200-plc-system-manual::0010",
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0014"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "Parameter P1240 controls the Vdc controller, with a default setting of 1, which enables the Vdc-max controller and automatically extends deceleration [1].",
+        "refused": false,
+        "latency_ms": 1103,
+        "input_tokens": 1929,
+        "output_tokens": 35,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-vd500-vfd-troubleshooting-guide:p1"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer accurately describes the function and default setting of parameter P1240 without contradicting the reference.",
+        "judge_tokens": {
+          "input_tokens": 430,
+          "output_tokens": 33
+        }
+      },
+      {
+        "id": "q21",
+        "type": "concept",
+        "mode": "bm25",
+        "question": "Where should RS-485 termination resistors be installed and what value should they have?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0018",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0000"
+        ],
+        "rank": 2,
+        "rr": 0.5,
+        "hit@1": 0.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "To install RS-485 termination resistors correctly:\n\n* Install a 120 ohm termination resistor at both physical ends of the bus and nowhere else [2].",
+        "refused": false,
+        "latency_ms": 1210,
+        "input_tokens": 2928,
+        "output_tokens": 35,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p4"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate's answer matches the reference exactly in both value and location.",
+        "judge_tokens": {
+          "input_tokens": 407,
+          "output_tokens": 31
+        }
+      },
+      {
+        "id": "q22",
+        "type": "concept",
+        "mode": "bm25",
+        "question": "What is the default IP address of a new FX-200 CPU?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0004",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0005",
+          "acme-vd500-vfd-troubleshooting-guide::0010"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "The default IP address of a new FX-200 CPU is 192.168.0.1 [1].",
+        "refused": false,
+        "latency_ms": 1007,
+        "input_tokens": 2508,
+        "output_tokens": 29,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p4"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 4,
+        "judge_reason": "The candidate provides the correct default IP address but omits the subnet mask mentioned in the reference.",
+        "judge_tokens": {
+          "input_tokens": 409,
+          "output_tokens": 35
+        }
+      },
+      {
+        "id": "q23",
+        "type": "concept",
+        "mode": "bm25",
+        "question": "How many events does the FX-200 diagnostic buffer keep?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0016",
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0009"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "The FX-200 diagnostic buffer stores the latest 50 events [1].",
+        "refused": false,
+        "latency_ms": 998,
+        "input_tokens": 2145,
+        "output_tokens": 18,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p2"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 4,
+        "judge_reason": "The candidate correctly states the number of events, but misses the additional details about time stamps, event IDs, and retention.",
+        "judge_tokens": {
+          "input_tokens": 404,
+          "output_tokens": 40
+        }
+      },
+      {
+        "id": "q24",
+        "type": "concept",
+        "mode": "bm25",
+        "question": "What happens if the power is switched off during an FX-200 firmware update?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0009",
+          "acme-vd500-vfd-troubleshooting-guide::0004"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "If the power is switched off during a firmware update, the CPU may become inoperable and must be returned for repair [1].",
+        "refused": false,
+        "latency_ms": 1008,
+        "input_tokens": 2487,
+        "output_tokens": 27,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p4"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer accurately captures the key consequence and required action mentioned in the reference.",
+        "judge_tokens": {
+          "input_tokens": 413,
+          "output_tokens": 27
+        }
+      },
+      {
+        "id": "q25",
+        "type": "unanswerable",
+        "mode": "bm25",
+        "question": "What is the maximum shaft torque of the motor driven by the VD-500 at 50 Hz?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-fx200-plc-system-manual::0004",
+          "acme-vd500-vfd-troubleshooting-guide::0009",
+          "acme-vd500-vfd-troubleshooting-guide::0003"
+        ],
+        "answer": "Not found in the provided manuals. The manuals do contain troubleshooting procedures, parameter settings, and fault/alarm codes for the ACME VectorDrive VD-500 series variable frequency drives (0.75 kW to 30 kW, 380-480 V three-phase) [1, 2].",
+        "refused": true,
+        "latency_ms": 1286,
+        "input_tokens": 1970,
+        "output_tokens": 68,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-vd500-vfd-troubleshooting-guide:p3",
+          "acme-vd500-vfd-troubleshooting-guide:p1"
+        ],
+        "refusal_correct": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate correctly identified that the information is not in the manuals.",
+        "judge_tokens": {
+          "input_tokens": 433,
+          "output_tokens": 29
+        }
+      },
+      {
+        "id": "q26",
+        "type": "unanswerable",
+        "mode": "bm25",
+        "question": "How do I program a PID control loop in ladder logic on the FX-200?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0011",
+          "acme-fx200-plc-system-manual::0012",
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0004",
+          "acme-fx200-plc-system-manual::0005"
+        ],
+        "answer": "Not found in the provided manuals. The provided manuals do describe the product overview, installation, wiring, LED status indicators, diagnostic event IDs, and module fault codes for the ACME FlexLogic FX-200 PLC [2, 3, 4, 5, 6].",
+        "refused": true,
+        "latency_ms": 1170,
+        "input_tokens": 1699,
+        "output_tokens": 59,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p3",
+          "acme-fx200-plc-system-manual:p1",
+          "acme-fx200-plc-system-manual:p2",
+          "acme-fx200-plc-system-manual:p2",
+          "acme-fx200-plc-system-manual:p2"
+        ],
+        "refusal_correct": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate correctly identified that the information is not in the provided manuals.",
+        "judge_tokens": {
+          "input_tokens": 420,
+          "output_tokens": 30
+        }
+      },
+      {
+        "id": "q27",
+        "type": "unanswerable",
+        "mode": "bm25",
+        "question": "What does fault code E-999 mean?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0016",
+          "acme-fx200-plc-system-manual::0013",
+          "acme-fx200-plc-system-manual::0017",
+          "acme-fx200-plc-system-manual::0018",
+          "acme-fx200-plc-system-manual::0014"
+        ],
+        "answer": "Not found in the provided manuals. The provided manuals do contain module fault codes ranging from E-101 to E-140 for the ACME FlexLogic FX-200 PLC System.",
+        "refused": true,
+        "latency_ms": 881,
+        "input_tokens": 897,
+        "output_tokens": 42,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [],
+        "refusal_correct": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate correctly identified that the information is not in the manuals while providing accurate context about existing fault codes.",
+        "judge_tokens": {
+          "input_tokens": 395,
+          "output_tokens": 32
+        }
+      },
+      {
+        "id": "q28",
+        "type": "unanswerable",
+        "mode": "bm25",
+        "question": "What is the price of a replacement FX-200 CPU module?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0003"
+        ],
+        "answer": "Not found in the provided manuals. The manuals do contain information on CPU status LED meanings, hardware faults, and procedures for replacing the CPU if the ERROR LED stays steady red after cycling the power [1].",
+        "refused": true,
+        "latency_ms": 1228,
+        "input_tokens": 2516,
+        "output_tokens": 41,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p1"
+        ],
+        "refusal_correct": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate correctly identified that the information is not in the manuals without inventing any facts.",
+        "judge_tokens": {
+          "input_tokens": 398,
+          "output_tokens": 33
+        }
+      },
+      {
+        "id": "q29",
+        "type": "unanswerable",
+        "mode": "bm25",
+        "question": "How do I configure an OPC UA server on the FX-200?",
+        "retrieval_ms": 0,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0016",
+          "acme-fx200-plc-system-manual::0009",
+          "acme-fx200-plc-system-manual::0013",
+          "acme-fx200-plc-system-manual::0017"
+        ],
+        "answer": "Not found in the provided manuals. The provided manuals do contain information on diagnostics, fault codes, troubleshooting CPU start issues, communication loss with I/O stations, and analog input troubleshooting.\n\n*(Note: When performing any electrical work, opening cabinets, wiring, or resetting machines, always follow proper lockout/tagout procedures and the manufacturer's safety instructions.)*",
+        "refused": true,
+        "latency_ms": 989,
+        "input_tokens": 1372,
+        "output_tokens": 73,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [],
+        "refusal_correct": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate correctly identified that the information is not in the manuals, matching the reference.",
+        "judge_tokens": {
+          "input_tokens": 431,
+          "output_tokens": 28
+        }
+      }
+    ],
+    "hybrid": [
+      {
+        "id": "q01",
+        "type": "fault_code",
+        "mode": "hybrid",
+        "question": "What does diagnostic event 16#8085 mean on the FX-200 and how do I fix it?",
+        "retrieval_ms": 70,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0008",
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0009",
+          "acme-fx200-plc-system-manual::0010",
+          "acme-fx200-plc-system-manual::0003"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "Fault code 16#8085 means that an I/O module was removed or is not responding [1]. The cause is that a signal module was pulled from the backplane, lost backplane contact, or failed [1].\n\nTo fix it:\n1. Power down the system [1]. \n*Reminder: Always follow proper lockout/tagout procedures and the manufacturer's safety instructions before performing any electrical work, opening cabinets, wiring, or resetting machines.*\n2. Re-seat the module [1].\n3. Check the bus connector [1].\n4. Verify the hardware configuration [1].",
+        "refused": false,
+        "latency_ms": 1127,
+        "input_tokens": 959,
+        "output_tokens": 131,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p2"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate's answer covers all key facts and steps from the reference accurately.",
+        "judge_tokens": {
+          "input_tokens": 549,
+          "output_tokens": 32
+        }
+      },
+      {
+        "id": "q02",
+        "type": "fault_code",
+        "mode": "hybrid",
+        "question": "An FX-200 output module reports fault code E-110. What is the cause and what should I do?",
+        "retrieval_ms": 80,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0014",
+          "acme-fx200-plc-system-manual::0017",
+          "acme-fx200-plc-system-manual::0013",
+          "acme-fx200-plc-system-manual::0016",
+          "acme-fx200-plc-system-manual::0015"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "Always follow lockout/tagout procedures and the manufacturer's safety instructions before performing any electrical work, opening cabinets, or wiring.\n\nFor fault code E-110 (Digital output short circuit):\n* **Cause:** Output current exceeded 1.2 A on a 24 V DC output channel [1].\n* **Remedy:** Disconnect the load, measure the load resistance and replace the faulty actuator or cable [1].\n\n*(Note: The manuals also contain troubleshooting information for other module fault codes such as E-130, E-102, E-120, E-111, and 16#8090 [2, 3, 4, 5, 6].)*",
+        "refused": false,
+        "latency_ms": 1196,
+        "input_tokens": 926,
+        "output_tokens": 157,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p3",
+          "acme-fx200-plc-system-manual:p3",
+          "acme-fx200-plc-system-manual:p3",
+          "acme-fx200-plc-system-manual:p3",
+          "acme-fx200-plc-system-manual:p3",
+          "acme-fx200-plc-system-manual:p3"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate provides the exact cause and correct remedy while including safe handling advice and harmless extra context.",
+        "judge_tokens": {
+          "input_tokens": 567,
+          "output_tokens": 35
+        }
+      },
+      {
+        "id": "q03",
+        "type": "fault_code",
+        "mode": "hybrid",
+        "question": "The CPU logged event 16#6500. What does it mean and how urgent is it?",
+        "retrieval_ms": 18,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0007",
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0003",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0006"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "Fault code 16#6500 means \"Backup battery low,\" caused by the CR2032 backup battery voltage dropping below 2.6 V [1]. \n\nThe remedy is to replace the backup battery within 7 days while the CPU is powered (see section 8.1) [1]. \n\n*Always follow lockout/tagout and the manufacturer's safety instructions when performing electrical work or opening cabinets.*",
+        "refused": false,
+        "latency_ms": 1041,
+        "input_tokens": 1457,
+        "output_tokens": 91,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p2"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate's answer is complete, accurate, and includes all key facts from the reference along with safe extra advice.",
+        "judge_tokens": {
+          "input_tokens": 500,
+          "output_tokens": 35
+        }
+      },
+      {
+        "id": "q04",
+        "type": "fault_code",
+        "mode": "hybrid",
+        "question": "Fault code E-140 keeps appearing on the RS-485 communication module. What is wrong?",
+        "retrieval_ms": 26,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0018",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0017",
+          "acme-fx200-plc-system-manual::0016",
+          "acme-fx200-plc-system-manual::0001"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "Fault code E-140 indicates a communication module bus error caused by CRC errors on the RS-485 port exceeding the threshold [1]. Repeated CRC errors usually indicate missing termination, a damaged shield, or two devices with the same address [2].\n\nTo resolve this issue, please follow lockout/tagout and the manufacturer's safety instructions before performing any electrical work, opening cabinets, or wiring:\n* Check termination resistors at both bus ends, cable shielding, and baud rate settings [1]. \n* Install a 120 ohm termination resistor at both physical ends of the bus and nowhere else [2].",
+        "refused": false,
+        "latency_ms": 1505,
+        "input_tokens": 1721,
+        "output_tokens": 129,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p3",
+          "acme-fx200-plc-system-manual:p4"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer covers all key facts from the reference and includes safe handling reminders.",
+        "judge_tokens": {
+          "input_tokens": 538,
+          "output_tokens": 27
+        }
+      },
+      {
+        "id": "q05",
+        "type": "fault_code",
+        "mode": "hybrid",
+        "question": "Our VD-500 drive trips with F-0011. What does that fault mean?",
+        "retrieval_ms": 28,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0005",
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0003",
+          "acme-vd500-vfd-troubleshooting-guide::0015",
+          "acme-vd500-vfd-troubleshooting-guide::0012"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "Fault code F-0011 means DC bus overvoltage [1]. Its cause is regenerative energy from an overhauling load or too short deceleration ramp, or the mains voltage being too high [1]. \n\nWhen performing any electrical work, opening cabinets, wiring, or resetting machines, be sure to follow lockout/tagout and the manufacturer's safety instructions [2].",
+        "refused": false,
+        "latency_ms": 50387,
+        "input_tokens": 1490,
+        "output_tokens": 78,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-vd500-vfd-troubleshooting-guide:p1",
+          "acme-vd500-vfd-troubleshooting-guide:p1"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 4,
+        "judge_reason": "Accurately identifies the fault meaning and causes, but omits the corrective actions listed in the reference.",
+        "judge_tokens": {
+          "input_tokens": 505,
+          "output_tokens": 37
+        }
+      },
+      {
+        "id": "q06",
+        "type": "fault_code",
+        "mode": "hybrid",
+        "question": "What is fault F-0042 on the VD-500?",
+        "retrieval_ms": 17,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0010",
+          "acme-vd500-vfd-troubleshooting-guide::0007",
+          "acme-vd500-vfd-troubleshooting-guide::0013",
+          "acme-vd500-vfd-troubleshooting-guide::0012",
+          "acme-vd500-vfd-troubleshooting-guide::0003"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "Fault code F-0042 indicates a fieldbus communication timeout [1]. This is caused by no telegram being received from the PLC within the monitoring time set in P2040, which has a default of 100 ms [1]. \n\nTo remedy this issue, check the fieldbus cable and connectors, the PLC status, and the monitoring time setting [1]. \n\nWhen performing electrical work, checking cables, or opening cabinets, always follow lockout/tagout procedures and the manufacturer's safety instructions.",
+        "refused": false,
+        "latency_ms": 1323,
+        "input_tokens": 931,
+        "output_tokens": 109,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-vd500-vfd-troubleshooting-guide:p2"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer accurately captures all key facts from the reference and appropriately includes safety reminders.",
+        "judge_tokens": {
+          "input_tokens": 513,
+          "output_tokens": 28
+        }
+      },
+      {
+        "id": "q07",
+        "type": "fault_code",
+        "mode": "hybrid",
+        "question": "The drive panel shows A-0910. Do I need to stop the machine?",
+        "retrieval_ms": 24,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0016",
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-fx200-plc-system-manual::0003",
+          "acme-vd500-vfd-troubleshooting-guide::0014"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "No, the drive keeps running because an alarm is a warning and the drive continues to operation [2]. Alarm code A-0910 indicates that the cooling fan maintenance is due because it has exceeded 40,000 operating hours [1]. You should replace the fan at the next shutdown [1]. \n\n*Note: Whenever performing electrical work, opening cabinets, or servicing the machine, remember to follow lockout/tagout and the manufacturer's safety instructions [2, 3].*",
+        "refused": false,
+        "latency_ms": 1288,
+        "input_tokens": 1908,
+        "output_tokens": 104,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-vd500-vfd-troubleshooting-guide:p2",
+          "acme-vd500-vfd-troubleshooting-guide:p1",
+          "acme-vd500-vfd-troubleshooting-guide:p3"
+        ],
+        "citation_accuracy": 0.6666666666666666,
+        "judge_score": 5,
+        "judge_reason": "The candidate correctly identifies that the drive does not need to be stopped and includes all key facts from the reference.",
+        "judge_tokens": {
+          "input_tokens": 503,
+          "output_tokens": 33
+        }
+      },
+      {
+        "id": "q08",
+        "type": "fault_code",
+        "mode": "hybrid",
+        "question": "How do I check the motor insulation after an F-0021 earth fault?",
+        "retrieval_ms": 30,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0007",
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0003",
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0009"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "When performing electrical work, opening cabinets, wiring or resetting machines, always follow lockout/tagout procedures and the manufacturer's safety instructions [2, 4]. Never perform insulation tests on the drive terminals themselves [4]. \n\nTo check the motor insulation after an F-0021 earth fault:\n1. Isolate the drive, apply lockout/tagout, and wait 5 minutes for the DC bus to discharge [2].\n2. Disconnect the motor cable at the drive [1, 2].\n3. Measure the motor insulation resistance phase-to-earth using a 500 V DC megohmmeter [1, 2]. The measured value must be above 1 Mohm [1, 2].",
+        "refused": false,
+        "latency_ms": 1252,
+        "input_tokens": 1944,
+        "output_tokens": 155,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-vd500-vfd-troubleshooting-guide:p2",
+          "acme-vd500-vfd-troubleshooting-guide:p3",
+          "acme-vd500-vfd-troubleshooting-guide:p1"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer includes all key facts from the reference and safely adds standard procedural steps.",
+        "judge_tokens": {
+          "input_tokens": 565,
+          "output_tokens": 28
+        }
+      },
+      {
+        "id": "q09",
+        "type": "fault_code",
+        "mode": "hybrid",
+        "question": "How can I fix event 16#02A4 cycle time exceeded?",
+        "retrieval_ms": 27,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0004",
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0003",
+          "acme-fx200-plc-system-manual::0009"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "To fix fault code 16#02A4 (Cycle time exceeded), use the following remedies:\n\n* Optimise the program [1].\n* Move slow tasks to a cyclic interrupt OB [1].\n* Increase the maximum cycle time in the CPU properties [1].",
+        "refused": false,
+        "latency_ms": 1252,
+        "input_tokens": 1439,
+        "output_tokens": 58,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p2"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer matches all key facts of the reference accurately and completely.",
+        "judge_tokens": {
+          "input_tokens": 460,
+          "output_tokens": 30
+        }
+      },
+      {
+        "id": "q10",
+        "type": "procedure",
+        "mode": "hybrid",
+        "question": "How do I replace the backup battery on the FX-200?",
+        "retrieval_ms": 21,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0007",
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0001"
+        ],
+        "rank": 3,
+        "rr": 0.3333333333333333,
+        "hit@1": 0.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "To replace the backup battery on the FX-200, perform the procedure while the CPU is powered so that the real-time clock and the diagnostic buffer are not lost [3]. \n\n*Reminder: Before performing any electrical work, opening cabinets, or wiring, always follow lockout/tagout procedures and the manufacturer's safety instructions.*\n\nFollow these steps:\n1. Open the front cover of the CPU [3].\n2. Pull out the battery holder using the tab [3].\n3. Insert a new CR2032 battery with the positive side facing up [3].\n4. Push the holder back until it clicks and close the cover [3]. The MAINT LED will switch off within 10 seconds [3].",
+        "refused": false,
+        "latency_ms": 1333,
+        "input_tokens": 2956,
+        "output_tokens": 154,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p4"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer correctly and completely provides all steps, values, and details from the reference.",
+        "judge_tokens": {
+          "input_tokens": 560,
+          "output_tokens": 34
+        }
+      },
+      {
+        "id": "q11",
+        "type": "procedure",
+        "mode": "hybrid",
+        "question": "The FX-200 CPU will not go to RUN. What steps should I follow?",
+        "retrieval_ms": 22,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0006",
+          "acme-fx200-plc-system-manual::0003",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0011"
+        ],
+        "rank": 4,
+        "rr": 0.25,
+        "hit@1": 0.0,
+        "hit@3": 0.0,
+        "hit@5": 1.0,
+        "answer": "Before performing any electrical work, opening control cabinets, or troubleshooting, remember to follow proper lockout/tagout procedures according to plant safety policies and switch off the supply [1]. \n\nTo resolve a CPU that will not go to RUN, follow these steps:\n1. Check that the mode selector is on the front of the CPU is in the RUN position [1, 4].\n2. Check the ERROR LED [4]. If it flashes red, read the diagnostic buffer and correct the first reported event [4]. (If the ERROR LED is steady red, it indicates a hardware fault of the CPU; cycle the power, and if the LED stays on, replace the CPU [1].)\n3. Verify that the hardware configuration in the project matches the installed modules (event 16#8086 indicates a mismatch) [4].\n4. Compile and download the complete project, including the hardware configuration [4].\n5. If the CPU still remains in STOP, reset the CPU to factory settings and download the project again [4].",
+        "refused": false,
+        "latency_ms": 1582,
+        "input_tokens": 2193,
+        "output_tokens": 215,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p1",
+          "acme-fx200-plc-system-manual:p2"
+        ],
+        "citation_accuracy": 0.5,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer includes all necessary steps from the reference and adds helpful context without contradicting it.",
+        "judge_tokens": {
+          "input_tokens": 636,
+          "output_tokens": 29
+        }
+      },
+      {
+        "id": "q12",
+        "type": "procedure",
+        "mode": "hybrid",
+        "question": "A PROFINET I/O station keeps dropping out. How do I troubleshoot the communication loss?",
+        "retrieval_ms": 48,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0006",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0008",
+          "acme-vd500-vfd-troubleshooting-guide::0010"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "To troubleshoot the loss of communication with an I/O station, please follow lockout/tagout procedures and the manufacturer's safety instructions before opening cabinets or checking wiring. \n\nUse the following steps from the manual:\n\n1. Check the LINK LED on the CPU port and on the I/O station; if the LED is off, there is no physical connection [2].\n2. Inspect the Ethernet cable and connectors, and replace any damaged cables, noting that industrial cables must not exceed 100 m between two devices [2].\n3. Verify that the device name and IP address of the station match the project configuration [2].\n4. Check the 24 V supply of the I/O station [1, 2].\n5. Use the topology view to locate the interrupted port, then acknowledge event 16#39C4 once communication is restored [2].\n\nThe manuals also contain related information regarding diagnostic event ID 16#39C4, which indicates a distributed I/O station failure when a PROFINET or fieldbus I/O station stops responding [1].",
+        "refused": false,
+        "latency_ms": 1566,
+        "input_tokens": 1771,
+        "output_tokens": 231,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p2",
+          "acme-fx200-plc-system-manual:p2"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer covers all key steps, limits, and codes from the reference accurately while including safe handling instructions.",
+        "judge_tokens": {
+          "input_tokens": 657,
+          "output_tokens": 33
+        }
+      },
+      {
+        "id": "q13",
+        "type": "procedure",
+        "mode": "hybrid",
+        "question": "An analog input shows a wrong value. What should I check?",
+        "retrieval_ms": 19,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0013",
+          "acme-fx200-plc-system-manual::0012",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0012"
+        ],
+        "rank": 3,
+        "rr": 0.3333333333333333,
+        "hit@1": 0.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "To troubleshoot an analog input showing a wrong value, follow these steps:\n\n1. Check the module DIAG LED and the fault code, such as E-101 for a wire break or E-102 for an overflow [3].\n2. Verify that the configured measuring range matches the sensor (for example, comparing 4–20 mA versus 0–10 V) [3].\n3. Measure the signal at the terminal using a calibrated multimeter [3].\n4. Check that the cable shield is grounded at one end only to prevent ground loops [3].\n\n*(Note: If your work involves electrical checks or wiring inside cabinets, always follow lockout/tagout procedures and the manufacturer's safety instructions.)*\n\nThe provided manuals also contain information on module fault codes (E-101 and E-102), CPU diagnostics, and troubleshooting communication or CPU startup issues [1, 2, 3].",
+        "refused": false,
+        "latency_ms": 1486,
+        "input_tokens": 1936,
+        "output_tokens": 195,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p3",
+          "acme-fx200-plc-system-manual:p3",
+          "acme-fx200-plc-system-manual:p2"
+        ],
+        "citation_accuracy": 0.3333333333333333,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer accurately includes all key facts and steps from the reference without contradictions.",
+        "judge_tokens": {
+          "input_tokens": 600,
+          "output_tokens": 32
+        }
+      },
+      {
+        "id": "q14",
+        "type": "procedure",
+        "mode": "hybrid",
+        "question": "The VD-500 trips on overcurrent while accelerating. What is the troubleshooting procedure?",
+        "retrieval_ms": 19,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0002",
+          "acme-vd500-vfd-troubleshooting-guide::0003",
+          "acme-vd500-vfd-troubleshooting-guide::0004",
+          "acme-vd500-vfd-troubleshooting-guide::0015"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "When performing electrical work, opening cabinets, wiring, or resetting machines, always follow lockout/tagout and the manufacturer's safety instructions [1].\n\nFor the VD-500 tripping on overcurrent during acceleration (fault code F-0001), use the following procedure:\n\n1. Note in which phase the trip occurs (acceleration is F-0001) [1].\n2. Isolate the drive, apply lockout/tagout, and wait 5 minutes for the DC bus to discharge [1].\n3. Disconnect the motor cable at the drive and measure the motor insulation resistance phase-to-earth with a 500 V megohmmeter (minimum 1 Mohm) [1, 2].\n4. Rotate the motor shaft by hand to check for mechanical jamming or bearing damage [1]; free the mechanical load if necessary [2].\n5. Check that the motor data P0304 to P0310 match the rating plate and run the motor identification (P1910 = 1) [1].\n6. Increase the ramp times (such as increasing P1120 acceleration time) in steps of 50 percent and test again [1, 2].",
+        "refused": false,
+        "latency_ms": 1565,
+        "input_tokens": 1357,
+        "output_tokens": 261,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-vd500-vfd-troubleshooting-guide:p3",
+          "acme-vd500-vfd-troubleshooting-guide:p1"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate's answer includes all key steps, fault codes, parameter numbers, and safety instructions from the reference.",
+        "judge_tokens": {
+          "input_tokens": 718,
+          "output_tokens": 39
+        }
+      },
+      {
+        "id": "q15",
+        "type": "procedure",
+        "mode": "hybrid",
+        "question": "How do I acknowledge a fault on the VD-500?",
+        "retrieval_ms": 23,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0013",
+          "acme-vd500-vfd-troubleshooting-guide::0007",
+          "acme-vd500-vfd-troubleshooting-guide::0011",
+          "acme-vd500-vfd-troubleshooting-guide::0003"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "To acknowledge a fault on the VD-500, use one of the following methods:\n1. Press the FN key on the operator panel [1].\n2. Apply a rising edge to the digital input set in P2103 [1].\n3. Send the acknowledge bit via the fieldbus control word [1].",
+        "refused": false,
+        "latency_ms": 1402,
+        "input_tokens": 1468,
+        "output_tokens": 70,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-vd500-vfd-troubleshooting-guide:p1"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer includes all three correct methods for acknowledging a fault matching the reference.",
+        "judge_tokens": {
+          "input_tokens": 459,
+          "output_tokens": 27
+        }
+      },
+      {
+        "id": "q16",
+        "type": "procedure",
+        "mode": "hybrid",
+        "question": "The VD-500 shows inverter overtemperature. What should I check?",
+        "retrieval_ms": 18,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0008",
+          "acme-vd500-vfd-troubleshooting-guide::0009",
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-fx200-plc-system-manual::0016"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "When performing electrical work, opening cabinets, wiring, or resetting machines, always follow lockout/tagout procedures and the manufacturer's safety instructions.\n\nFor fault code F-0030 (Inverter overtemperature), check the following:\n* Check the cooling fan and verify that it runs when the drive is enabled [1, 3].\n* Clean dust and dirt from the heat sink using dry compressed air [1, 3].\n* Check if the ambient temperature is above 45 °C by measuring the cabinet temperature; the drive is rated for 45 °C without derating [1, 3].\n* Reduce the switching frequency P1800 or reduce the load [1, 3].",
+        "refused": false,
+        "latency_ms": 1420,
+        "input_tokens": 1971,
+        "output_tokens": 151,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-vd500-vfd-troubleshooting-guide:p2",
+          "acme-vd500-vfd-troubleshooting-guide:p3"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer includes all key facts, fault code, and troubleshooting steps from the reference without contradictions.",
+        "judge_tokens": {
+          "input_tokens": 567,
+          "output_tokens": 31
+        }
+      },
+      {
+        "id": "q17",
+        "type": "concept",
+        "mode": "hybrid",
+        "question": "What does a flashing red ERROR LED mean on the FX-200 CPU?",
+        "retrieval_ms": 21,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0018",
+          "acme-fx200-plc-system-manual::0003"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "A flashing red ERROR LED means that a diagnostic event is active, for example a module fault or a program error [1]. You should read the diagnostic buffer [1]. \n\n*(Note: Before opening control cabinets, wiring, or servicing the controller, always switch off the supply, apply lockout/tagout according to plant safety procedures, and verify the absence of voltage with a suitable tester [1].)*",
+        "refused": false,
+        "latency_ms": 1220,
+        "input_tokens": 2173,
+        "output_tokens": 82,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p1"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate's answer correctly identifies that a flashing red ERROR LED indicates an active diagnostic event and advises reading the diagnostic buffer, matching the reference completely while including standard safety warnings.",
+        "judge_tokens": {
+          "input_tokens": 473,
+          "output_tokens": 46
+        }
+      },
+      {
+        "id": "q18",
+        "type": "concept",
+        "mode": "hybrid",
+        "question": "What is the permissible supply voltage range of the FX-200 CPU?",
+        "retrieval_ms": 21,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0013",
+          "acme-fx200-plc-system-manual::0007",
+          "acme-fx200-plc-system-manual::0015",
+          "acme-fx200-plc-system-manual::0010"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "The permissible supply voltage range of the FX-200 CPU is 20.4 to 28.8 V DC [1].",
+        "refused": false,
+        "latency_ms": 1011,
+        "input_tokens": 1691,
+        "output_tokens": 30,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p1"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 4,
+        "judge_reason": "The candidate provides the correct voltage range but misses the nominal value and the fuse requirement.",
+        "judge_tokens": {
+          "input_tokens": 415,
+          "output_tokens": 28
+        }
+      },
+      {
+        "id": "q19",
+        "type": "concept",
+        "mode": "hybrid",
+        "question": "How long must I wait after switching off the VD-500 before working on it?",
+        "retrieval_ms": 25,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-vd500-vfd-troubleshooting-guide::0015",
+          "acme-vd500-vfd-troubleshooting-guide::0014"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "You must wait at least 5 minutes after switching off before working on the drive [1]. \n\nWhen performing electrical work, opening cabinets, wiring, or resetting machines, always follow lockout/tagout and the manufacturer's safety instructions [1, 2]. After the 5-minute wait, measure the DC bus voltage between terminals DC+ and DC- to confirm it is below 50 V DC [1].",
+        "refused": false,
+        "latency_ms": 993,
+        "input_tokens": 2250,
+        "output_tokens": 87,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-vd500-vfd-troubleshooting-guide:p1",
+          "acme-vd500-vfd-troubleshooting-guide:p3"
+        ],
+        "citation_accuracy": 0.5,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer includes all key facts from the reference and safely follows all instructions.",
+        "judge_tokens": {
+          "input_tokens": 481,
+          "output_tokens": 27
+        }
+      },
+      {
+        "id": "q20",
+        "type": "concept",
+        "mode": "hybrid",
+        "question": "What does parameter P1240 do on the VD-500?",
+        "retrieval_ms": 19,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0015",
+          "acme-vd500-vfd-troubleshooting-guide::0014",
+          "acme-vd500-vfd-troubleshooting-guide::0005",
+          "acme-vd500-vfd-troubleshooting-guide::0001"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "Parameter P1240 sets the Vdc controller, with a default value of 1, which enables the Vdc-max controller to extend deceleration automatically [1]. Enabling the Vdc-max controller with P1240 = 1 is also a remedy for DC bus overvoltage (F-0011) [4, 5].",
+        "refused": false,
+        "latency_ms": 1153,
+        "input_tokens": 1929,
+        "output_tokens": 74,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-vd500-vfd-troubleshooting-guide:p1",
+          "acme-vd500-vfd-troubleshooting-guide:p1",
+          "acme-vd500-vfd-troubleshooting-guide:p3"
+        ],
+        "citation_accuracy": 0.3333333333333333,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer captures all key facts from the reference accurately and completely.",
+        "judge_tokens": {
+          "input_tokens": 469,
+          "output_tokens": 25
+        }
+      },
+      {
+        "id": "q21",
+        "type": "concept",
+        "mode": "hybrid",
+        "question": "Where should RS-485 termination resistors be installed and what value should they have?",
+        "retrieval_ms": 22,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0018",
+          "acme-fx200-plc-system-manual::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-fx200-plc-system-manual::0001"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "For RS-485 networks, install a 120 ohm termination resistor at both physical ends of the bus and nowhere else [1].",
+        "refused": false,
+        "latency_ms": 53549,
+        "input_tokens": 3045,
+        "output_tokens": 30,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p4"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer matches all key facts of the reference accurately and completely.",
+        "judge_tokens": {
+          "input_tokens": 402,
+          "output_tokens": 30
+        }
+      },
+      {
+        "id": "q22",
+        "type": "concept",
+        "mode": "hybrid",
+        "question": "What is the default IP address of a new FX-200 CPU?",
+        "retrieval_ms": 20,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0004",
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0003"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "The default IP address of a new CPU is 192.168.0.1 with subnet mask 255.255.255.0 [1].",
+        "refused": false,
+        "latency_ms": 1107,
+        "input_tokens": 2040,
+        "output_tokens": 41,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p4"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer matches the reference completely and accurately.",
+        "judge_tokens": {
+          "input_tokens": 421,
+          "output_tokens": 26
+        }
+      },
+      {
+        "id": "q23",
+        "type": "concept",
+        "mode": "hybrid",
+        "question": "How many events does the FX-200 diagnostic buffer keep?",
+        "retrieval_ms": 20,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0003",
+          "acme-fx200-plc-system-manual::0005"
+        ],
+        "rank": 1,
+        "rr": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "The diagnostic buffer stores the latest 50 events [1].",
+        "refused": false,
+        "latency_ms": 1047,
+        "input_tokens": 2172,
+        "output_tokens": 13,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p2"
+        ],
+        "citation_accuracy": 1.0,
+        "judge_score": 4,
+        "judge_reason": "The candidate correctly states the number of events (50), but misses the additional details about the time stamp, event ID, and retention provided in the reference.",
+        "judge_tokens": {
+          "input_tokens": 399,
+          "output_tokens": 43
+        }
+      },
+      {
+        "id": "q24",
+        "type": "concept",
+        "mode": "hybrid",
+        "question": "What happens if the power is switched off during an FX-200 firmware update?",
+        "retrieval_ms": 20,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0011",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0008",
+          "acme-fx200-plc-system-manual::0009"
+        ],
+        "rank": 3,
+        "rr": 0.3333333333333333,
+        "hit@1": 0.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "answer": "If the power is switched off during a firmware update, the CPU may become inoperable and must be returned for repair [3]. \n\n*Note: Before performing any electrical work, opening cabinets, wiring, or resetting machines, always follow lockout/tagout procedures according to plant safety requirements and the manufacturer's safety instructions [1].*",
+        "refused": false,
+        "latency_ms": 1216,
+        "input_tokens": 2051,
+        "output_tokens": 70,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p1",
+          "acme-fx200-plc-system-manual:p4"
+        ],
+        "citation_accuracy": 0.5,
+        "judge_score": 5,
+        "judge_reason": "The candidate answer matches all key facts of the reference and includes appropriate safety reminders.",
+        "judge_tokens": {
+          "input_tokens": 456,
+          "output_tokens": 27
+        }
+      },
+      {
+        "id": "q25",
+        "type": "unanswerable",
+        "mode": "hybrid",
+        "question": "What is the maximum shaft torque of the motor driven by the VD-500 at 50 Hz?",
+        "retrieval_ms": 20,
+        "retrieved": [
+          "acme-vd500-vfd-troubleshooting-guide::0000",
+          "acme-vd500-vfd-troubleshooting-guide::0003",
+          "acme-vd500-vfd-troubleshooting-guide::0009",
+          "acme-vd500-vfd-troubleshooting-guide::0001",
+          "acme-vd500-vfd-troubleshooting-guide::0007"
+        ],
+        "answer": "Not found in the provided manuals. The provided manuals do contain troubleshooting procedures, parameter settings, fault codes (such as F-0001 through F-0031), and alarm codes for the ACME VectorDrive VD-500 series [1, 2, 3, 4, 5, 6].",
+        "refused": true,
+        "latency_ms": 57272,
+        "input_tokens": 1940,
+        "output_tokens": 70,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-vd500-vfd-troubleshooting-guide:p1",
+          "acme-vd500-vfd-troubleshooting-guide:p1",
+          "acme-vd500-vfd-troubleshooting-guide:p2",
+          "acme-vd500-vfd-troubleshooting-guide:p3",
+          "acme-vd500-vfd-troubleshooting-guide:p2",
+          "acme-vd500-vfd-troubleshooting-guide:p2"
+        ],
+        "refusal_correct": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate correctly identified that the information is not in the manuals.",
+        "judge_tokens": {
+          "input_tokens": 435,
+          "output_tokens": 29
+        }
+      },
+      {
+        "id": "q26",
+        "type": "unanswerable",
+        "mode": "hybrid",
+        "question": "How do I program a PID control loop in ladder logic on the FX-200?",
+        "retrieval_ms": 20,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0012",
+          "acme-fx200-plc-system-manual::0003",
+          "acme-fx200-plc-system-manual::0004",
+          "acme-vd500-vfd-troubleshooting-guide::0011"
+        ],
+        "answer": "Not found in the provided manuals. The provided manuals do contain information on system hardware specifications, installation and wiring, operating modes, LED status indicators, and diagnostic fault codes for the FX-200 PLC.",
+        "refused": true,
+        "latency_ms": 56726,
+        "input_tokens": 1699,
+        "output_tokens": 42,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [],
+        "refusal_correct": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate correctly stated that the information is not found in the manuals without inventing any facts.",
+        "judge_tokens": {
+          "input_tokens": 403,
+          "output_tokens": 29
+        }
+      },
+      {
+        "id": "q27",
+        "type": "unanswerable",
+        "mode": "hybrid",
+        "question": "What does fault code E-999 mean?",
+        "retrieval_ms": 18,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0017",
+          "acme-fx200-plc-system-manual::0014",
+          "acme-fx200-plc-system-manual::0018",
+          "acme-fx200-plc-system-manual::0013",
+          "acme-fx200-plc-system-manual::0015"
+        ],
+        "answer": "Not found in the provided manuals. The provided manuals do contain fault codes and remedies for module faults such as E-102, E-110, E-111, E-120, E-130, and E-140 [1, 2, 3, 4, 5, 6].",
+        "refused": true,
+        "latency_ms": 970,
+        "input_tokens": 901,
+        "output_tokens": 75,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p3",
+          "acme-fx200-plc-system-manual:p3",
+          "acme-fx200-plc-system-manual:p3",
+          "acme-fx200-plc-system-manual:p3",
+          "acme-fx200-plc-system-manual:p3",
+          "acme-fx200-plc-system-manual:p3"
+        ],
+        "refusal_correct": 1.0,
+        "judge_score": 5,
+        "judge_reason": "Correctly states the information is not found in the manuals without hallucinating facts.",
+        "judge_tokens": {
+          "input_tokens": 428,
+          "output_tokens": 27
+        }
+      },
+      {
+        "id": "q28",
+        "type": "unanswerable",
+        "mode": "hybrid",
+        "question": "What is the price of a replacement FX-200 CPU module?",
+        "retrieval_ms": 19,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0000",
+          "acme-fx200-plc-system-manual::0003",
+          "acme-fx200-plc-system-manual::0002",
+          "acme-fx200-plc-system-manual::0007",
+          "acme-fx200-plc-system-manual::0009"
+        ],
+        "answer": "Not found in the provided manuals. The manuals do contain hardware specifications, operating modes, installation and wiring guidelines, status LED meanings, and diagnostic event descriptions for the FX-200 PLC system [1, 2, 3, 4, 5, 6].",
+        "refused": true,
+        "latency_ms": 972,
+        "input_tokens": 2032,
+        "output_tokens": 57,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [
+          "acme-fx200-plc-system-manual:p1",
+          "acme-fx200-plc-system-manual:p2",
+          "acme-fx200-plc-system-manual:p4",
+          "acme-fx200-plc-system-manual:p2",
+          "acme-fx200-plc-system-manual:p2",
+          "acme-fx200-plc-system-manual:p3"
+        ],
+        "refusal_correct": 1.0,
+        "judge_score": 5,
+        "judge_reason": "Correctly identifies that the information is not in the manuals without inventing any facts.",
+        "judge_tokens": {
+          "input_tokens": 414,
+          "output_tokens": 27
+        }
+      },
+      {
+        "id": "q29",
+        "type": "unanswerable",
+        "mode": "hybrid",
+        "question": "How do I configure an OPC UA server on the FX-200?",
+        "retrieval_ms": 23,
+        "retrieved": [
+          "acme-fx200-plc-system-manual::0009",
+          "acme-fx200-plc-system-manual::0013",
+          "acme-fx200-plc-system-manual::0018",
+          "acme-fx200-plc-system-manual::0001",
+          "acme-fx200-plc-system-manual::0006"
+        ],
+        "answer": "Not found in the provided manuals. The provided manuals do contain information on diagnostic event IDs, module fault codes, troubleshooting CPU startup, loss of communication with I/O stations, and analog input troubleshooting.",
+        "refused": true,
+        "latency_ms": 996,
+        "input_tokens": 1408,
+        "output_tokens": 40,
+        "cost_usd": null,
+        "model": "gemini-flash-lite-latest",
+        "cited": [],
+        "refusal_correct": 1.0,
+        "judge_score": 5,
+        "judge_reason": "The candidate correctly stated the information was not found in the manuals and appropriately noted what topics were actually covered.",
+        "judge_tokens": {
+          "input_tokens": 398,
+          "output_tokens": 32
+        }
+      }
+    ]
+  }
+}

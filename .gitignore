@@ -20,3 +20,6 @@ tests/fixtures/*.pdf
 .idea/
 .DS_Store
 Thumbs.db
+
+# Personal notes (job application material) - never commit
+PROJECT_SUMMARY.md

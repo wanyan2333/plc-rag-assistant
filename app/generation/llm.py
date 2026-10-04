@@ -281,7 +281,9 @@ class GeminiLLM:
                 retryable = getattr(exc, "code", None) in (429, 500, 502, 503, 504)
                 if not retryable or attempt == attempts - 1:
                     raise LLMError(f"Gemini API error: {exc}") from exc
-                delay = 2 ** (attempt + 1)  # 2, 4, 8, 16 s
+                # Rate limits say how long to wait ("Please retry in 38.7s"); otherwise back off 2, 4, 8, 16 s.
+                hint = re.search(r"retry in (\d+(?:\.\d+)?)s", str(exc))
+                delay = min(float(hint.group(1)) + 1, 65) if hint else 2 ** (attempt + 1)
                 log.warning("Gemini %s, retrying in %ss", getattr(exc, "code", "?"), delay)
                 time.sleep(delay)
 

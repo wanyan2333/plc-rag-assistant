@@ -2,8 +2,18 @@
 
 **Ask a PLC or drive manual a question in plain English, or paste a fault code, and get a cited answer or a validated, step-by-step troubleshooting plan in seconds.**
 
-![Demo screenshot - placeholder](docs/demo.png)
-<!-- TODO(Kevin): add a screenshot or GIF of the Streamlit UI here -->
+**Troubleshoot mode**: a fault code becomes a validated plan with causes, ordered steps, safety notes and page citations.
+
+![Troubleshoot mode: fault F-0011 turned into causes, ordered diagnostic steps, safety notes and cited sources](docs/demo-troubleshoot.png)
+
+<details>
+<summary><b>Q&A mode</b>: answer with [n] citations and the source snippet (click to expand)</summary>
+
+![Q&A mode: answer with a citation card showing the manual page and the matching table row](docs/demo-qa.png)
+
+</details>
+
+*Screenshots from the Streamlit UI running on the two fictional demo manuals with Gemini Flash-Lite.*
 
 ---
 

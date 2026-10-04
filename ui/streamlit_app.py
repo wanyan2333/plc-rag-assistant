@@ -177,15 +177,10 @@ elif result and result["mode"] == "troubleshoot":
         st.markdown(f":{color}[**Confidence: {r['confidence']}**] · Found in manuals: {'yes' if r['found_in_manuals'] else 'no'}")
         st.info(r["summary"])
 
-        left, right = st.columns(2)
-        with left:
-            st.markdown("#### Likely causes")
-            for cause in r["likely_causes"] or ["—"]:
-                st.markdown(f"- {cause}")
-        with right:
-            st.markdown("#### Diagnostic steps")
-            for i, step in enumerate(r["diagnostic_steps"], start=1):
-                st.checkbox(f"{i}. {step}", key=f"step_{i}_{hash(step)}")
+        st.markdown("#### Likely causes")
+        st.markdown("\n".join(f"- {cause}" for cause in r["likely_causes"] or ["—"]))
+        st.markdown("#### Diagnostic steps")
+        st.markdown("\n".join(f"{i}. {step}" for i, step in enumerate(r["diagnostic_steps"], start=1)))
 
         for note in r["safety_notes"]:
             st.warning(f"⚠️ {note}")

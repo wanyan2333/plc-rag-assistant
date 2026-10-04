@@ -16,6 +16,7 @@ from pydantic import BaseModel, Field, ValidationError, model_validator
 
 from app.config import RetrievalMode, Settings
 from app.generation.citations import Citation
+from app.generation.general import general_answer
 from app.generation.llm import LLM, LLMError, Message, ToolCall, ToolResult, ToolSpec, Usage
 from app.generation.prompts import TROUBLESHOOT_SYSTEM
 from app.generation.tools import LOOKUP_FAULT_CODE, SEARCH_MANUALS, ToolExecutor
@@ -55,6 +56,7 @@ class TroubleshootResponse(BaseModel):
     ok: bool
     result: TroubleshootResult | None = None
     error: str | None = None
+    general_answer: str | None = None  # general-knowledge answer when the manuals had nothing
     question: str
     attempts: int = 0
     tool_rounds: int = 0
@@ -102,6 +104,26 @@ def troubleshoot(
     llm: LLM,
     settings: Settings,
     mode: RetrievalMode = "hybrid",
+    allow_general: bool = False,
+) -> TroubleshootResponse:
+    response = _troubleshoot(question, retriever, llm, settings, mode)
+    if allow_general and response.ok and not response.result.found_in_manuals:
+        start = time.perf_counter()
+        response.general_answer, extra = general_answer(question, llm)
+        response.usage = {
+            "input_tokens": response.usage.get("input_tokens", 0) + extra.input_tokens,
+            "output_tokens": response.usage.get("output_tokens", 0) + extra.output_tokens,
+        }
+        response.latency_ms += int((time.perf_counter() - start) * 1000)
+    return response
+
+
+def _troubleshoot(
+    question: str,
+    retriever,
+    llm: LLM,
+    settings: Settings,
+    mode: RetrievalMode,
 ) -> TroubleshootResponse:
     start = time.perf_counter()
     max_rounds = settings.max_tool_rounds

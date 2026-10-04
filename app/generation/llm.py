@@ -477,6 +477,8 @@ def default_fake_policy(system: str, messages: list[Message], tools: list[ToolSp
     from app.generation.prompts import NOT_FOUND  # local import to avoid a cycle
 
     question = messages[0].text
+    if "answer it from your general knowledge" in system:
+        return fake_response(f"General-knowledge answer (offline FakeLLM) to: {question}")
     if tools and any(t.name == "submit_troubleshooting_result" for t in tools):
         return _fake_troubleshoot(question, messages, tools)
 

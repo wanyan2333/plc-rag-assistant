@@ -59,6 +59,32 @@ def test_unanswerable_question_is_refused(retriever):
     assert result.citations == []
 
 
+def test_general_answer_only_when_manuals_have_nothing(retriever):
+    off_topic = "What is the warranty period for the gearbox oil?"
+    result = answer_question(off_topic, retriever, FakeLLM(), k=4, allow_general=True)
+    assert not result.found_in_manuals
+    assert result.answer.startswith(NOT_FOUND)  # the grounded verdict is kept
+    assert result.general_answer and "General-knowledge answer" in result.general_answer
+
+    grounded = answer_question("What does fault code E-205 mean?", retriever, FakeLLM(), k=4, allow_general=True)
+    assert grounded.found_in_manuals and grounded.general_answer is None
+
+
+def test_general_answer_is_off_by_default(retriever):
+    llm = FakeLLM()
+    result = answer_question("What is the warranty period for the gearbox oil?", retriever, llm, k=4)
+    assert result.general_answer is None
+    assert len(llm.calls) == 1  # no extra model call
+
+
+def test_general_prompt_is_labelled_and_separate(retriever):
+    llm = FakeLLM()
+    answer_question("Who are you?", retriever, llm, k=4, allow_general=True)
+    system = llm.calls[-1]["system"]
+    assert "general knowledge" in system and "same language as the question" in system
+    assert "<sources>" not in llm.calls[-1]["messages"][0].text
+
+
 def test_fallback_llm_uses_backup_when_primary_fails(retriever):
     from app.generation.llm import FallbackLLM, LLMError
 

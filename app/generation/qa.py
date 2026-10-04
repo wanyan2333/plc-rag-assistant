@@ -9,6 +9,7 @@ from pydantic import BaseModel
 
 from app.config import RetrievalMode
 from app.generation.citations import NumberedCitation, best_snippet, cited_numbers
+from app.generation.general import general_answer
 from app.generation.llm import LLM, Message, Usage
 from app.generation.prompts import NOT_FOUND, QA_SYSTEM, qa_user_prompt
 from app.retrieval.hybrid import HybridRetriever
@@ -19,6 +20,7 @@ class QAResult(BaseModel):
     answer: str
     citations: list[NumberedCitation]
     found_in_manuals: bool
+    general_answer: str | None = None  # general-knowledge answer, only when the manuals had nothing
     retrieval_mode: str
     retrieved_chunk_ids: list[str]
     usage: dict
@@ -36,6 +38,7 @@ def answer_question(
     llm: LLM,
     k: int = 6,
     mode: RetrievalMode = "hybrid",
+    allow_general: bool = False,
 ) -> QAResult:
     start = time.perf_counter()
     results = retriever.search(question, k=k, mode=mode)
@@ -66,11 +69,18 @@ def answer_question(
             )
         )
 
+    found = not is_not_found(answer)
+    general = None
+    if not found and allow_general:
+        general, extra = general_answer(question, llm)
+        usage += extra
+
     return QAResult(
         question=question,
         answer=answer,
         citations=citations,
-        found_in_manuals=not is_not_found(answer),
+        found_in_manuals=found,
+        general_answer=general,
         retrieval_mode=mode,
         retrieved_chunk_ids=[r.chunk.chunk_id for r in results],
         usage=usage.to_dict(),

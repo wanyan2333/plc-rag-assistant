@@ -18,6 +18,7 @@ Before my Master of Information Technology at the University of Auckland, I work
 | Capability | How |
 |---|---|
 | **Q&A with citations** | Hybrid retrieval → Claude answers *only* from the retrieved excerpts, citing every statement as `[n]` (document + page). Says *"Not found in the provided manuals"* instead of guessing. |
+| **General answers, clearly labelled** | When the manuals don't cover a question, the grounded verdict stays "not found", and a separate general-knowledge answer is added (in the user's language) and shown as *not verified against your documentation*. It can be switched off per request with `allow_general`. |
 | **Troubleshoot mode** | A tool-calling agent (`lookup_fault_code`, `search_manuals`) researches the fault, then submits a plan validated against a Pydantic schema: causes, ordered steps, safety notes, citations, confidence. |
 | **Exact fault-code lookup** | Every row of a fault-code table becomes its own chunk, so `16#8085`, `F-0042` or `E-101` resolve to one precise table entry. Also available as `GET /fault-codes/{code}` without any LLM call. |
 | **Evaluation** | A 29-question labelled set; Hit@k, MRR, LLM-as-judge, citation accuracy and refusal accuracy for `vector` vs `bm25` vs `hybrid` retrieval. |
@@ -62,9 +63,9 @@ flowchart LR
 
 A failure is sent back to the model once as an error tool result. A second failure returns a structured error (`ok=false`, raw output attached) instead of crashing or passing unverified data on.
 
-**Refusal is a feature.** Both prompts instruct the model to answer *"Not found in the provided manuals"* when the excerpts don't cover the question. The eval set includes unanswerable questions specifically to measure this.
+**Refusal is a feature, but a dead end isn't.** Both grounded prompts instruct the model to answer *"Not found in the provided manuals"* when the excerpts don't cover the question. The eval set includes unanswerable questions specifically to measure this. Users still want help with general questions (e.g. "how do I tune a PID loop?"), so a second, separate call answers from general knowledge. It is kept in its own `general_answer` field, never mixed with cited content, and labelled in the UI. The evaluation runs with it disabled, so refusal accuracy measures the grounded pipeline only.
 
-**Offline by default in tests.** All 84 tests use a generated synthetic PDF, a deterministic hashing embedder and `FakeLLM`. `pytest` needs no network and no API key.
+**Offline by default in tests.** All 89 tests use a generated synthetic PDF, a deterministic hashing embedder and `FakeLLM`. `pytest` needs no network and no API key.
 
 ## Evaluation results
 
@@ -181,7 +182,7 @@ app/
   fault_codes.py       fault-code patterns + normalisation
   ingest/              pdf_parser.py, chunker.py, pipeline.py, __main__.py (CLI)
   retrieval/           vector.py (Chroma), bm25.py, hybrid.py (RRF), store.py, embeddings.py
-  generation/          llm.py (Claude/Gemini/OpenRouter/Fake), prompts.py, qa.py, troubleshoot.py, tools.py
+  generation/          llm.py (Claude/Gemini/OpenRouter/Fake), prompts.py, qa.py, troubleshoot.py, tools.py, general.py
   api/                 main.py, schemas.py
 ui/streamlit_app.py
 eval/                  dataset.jsonl, run.py, metrics.py, judge_prompt.md, results/

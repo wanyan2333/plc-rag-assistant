@@ -120,13 +120,17 @@ def create_app(services: Services | None = None, warmup: bool = True) -> FastAPI
 
         if body.mode == "qa":
             try:
-                result = answer_question(body.question, retriever, llm, k=body.top_k, mode=body.retrieval)
+                result = answer_question(
+                    body.question, retriever, llm, k=body.top_k, mode=body.retrieval, allow_general=body.allow_general
+                )
             except LLMError as exc:
                 raise HTTPException(status_code=502, detail=str(exc)) from exc
             response = AskResponse(mode="qa", retrieval=body.retrieval, qa=result)
             chunk_ids, usage = result.retrieved_chunk_ids, result.usage
         else:
-            result = troubleshoot(body.question, retriever, llm, services.settings, mode=body.retrieval)
+            result = troubleshoot(
+                body.question, retriever, llm, services.settings, mode=body.retrieval, allow_general=body.allow_general
+            )
             response = AskResponse(mode="troubleshoot", retrieval=body.retrieval, troubleshoot=result)
             chunk_ids, usage = result.retrieved_chunk_ids, result.usage
 
@@ -139,6 +143,7 @@ def create_app(services: Services | None = None, warmup: bool = True) -> FastAPI
                     "latency_ms": int((time.perf_counter() - start) * 1000),
                     "chunk_ids": chunk_ids,
                     "usage": usage,
+                    "general_answer": bool((response.qa or response.troubleshoot).general_answer),
                     "question_chars": len(body.question),
                 }
             )

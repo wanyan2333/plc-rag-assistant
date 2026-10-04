@@ -76,6 +76,16 @@ def test_ask_troubleshoot(client):
     assert ts["tool_trace"][0]["tool"] == "lookup_fault_code"
 
 
+def test_ask_off_topic_gets_labelled_general_answer(client):
+    body = client.post("/ask", json={"question": "Are you Gemini?", "mode": "qa"}).json()["qa"]
+    assert not body["found_in_manuals"]
+    assert body["general_answer"]
+    assert body["citations"] == []
+
+    body = client.post("/ask", json={"question": "Are you Gemini?", "mode": "qa", "allow_general": False}).json()["qa"]
+    assert body["general_answer"] is None
+
+
 def test_ask_validation(client):
     assert client.post("/ask", json={"question": "", "mode": "qa"}).status_code == 422
     assert client.post("/ask", json={"question": "x", "mode": "chat"}).status_code == 422

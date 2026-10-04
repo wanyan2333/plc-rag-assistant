@@ -40,9 +40,11 @@ def get_json(path: str):
     return response.json()
 
 
-def ask(question: str, mode: str, retrieval: str) -> dict:
+def ask(question: str, mode: str, retrieval: str, allow_general: bool) -> dict:
     response = httpx.post(
-        f"{API_URL}/ask", json={"question": question, "mode": mode, "retrieval": retrieval}, timeout=300
+        f"{API_URL}/ask",
+        json={"question": question, "mode": mode, "retrieval": retrieval, "allow_general": allow_general},
+        timeout=300,
     )
     if response.status_code != 200:
         raise RuntimeError(f"{response.status_code}: {response.json().get('detail', response.text)}")
@@ -57,6 +59,18 @@ def citation_cards(citations: list[dict], numbered: bool) -> None:
             if c.get("section_heading"):
                 st.caption(c["section_heading"])
             st.markdown(f"> {c['snippet']}")
+
+
+def render_general(data: dict) -> None:
+    """Show the manuals' 'not found' result and, if present, the clearly labelled general answer."""
+    if data.get("general_answer"):
+        st.warning(
+            "Not found in the ingested manuals. The answer below is from the model's general knowledge "
+            "and has **not** been verified against your documentation."
+        )
+        st.markdown(data["general_answer"])
+    else:
+        st.warning("The manuals do not cover this question. Enable general answers to get a general-knowledge reply.")
 
 
 def render_meta(data: dict) -> None:
@@ -99,12 +113,20 @@ with st.sidebar:
 
 # ------------------------------------------------------------------ main
 st.title("🔧 PLC Troubleshooting Assistant")
-st.caption("Answers come only from the ingested manuals, with page-level citations. Always follow lockout/tagout.")
+st.caption(
+    "Answers come from the ingested manuals with page-level citations; questions the manuals don't cover "
+    "get a clearly labelled general-knowledge answer. Always follow lockout/tagout."
+)
 
 col_mode, col_retrieval = st.columns([2, 1])
 mode_label = col_mode.radio("Mode", ["Q&A", "Troubleshoot"], horizontal=True)
 mode = "qa" if mode_label == "Q&A" else "troubleshoot"
 retrieval = col_retrieval.selectbox("Retrieval", ["hybrid", "vector", "bm25"])
+allow_general = st.toggle(
+    "Answer from general knowledge when the manuals don't cover the question",
+    value=True,
+    help="Manual-based answers always come first. General answers are labelled as not verified.",
+)
 
 st.write("Examples:")
 example_cols = st.columns(len(EXAMPLES[mode]))
@@ -122,7 +144,7 @@ question = st.text_area(
 if st.button("Ask", type="primary", disabled=not question.strip()):
     with st.spinner("Searching the manuals…"):
         try:
-            st.session_state["result"] = ask(question.strip(), mode, retrieval)
+            st.session_state["result"] = ask(question.strip(), mode, retrieval, allow_general)
         except (RuntimeError, httpx.HTTPError) as exc:
             st.session_state["result"] = None
             st.error(f"Request failed: {exc}")
@@ -131,10 +153,11 @@ result = st.session_state.get("result")
 if result and result["mode"] == "qa":
     qa = result["qa"]
     st.subheader("Answer")
-    if not qa["found_in_manuals"]:
-        st.warning("The manuals do not cover this question.")
-    st.markdown(qa["answer"])
-    if qa["citations"]:
+    if qa["found_in_manuals"]:
+        st.markdown(qa["answer"])
+    else:
+        render_general(qa)
+    if qa["found_in_manuals"] and qa["citations"]:
         st.subheader("Sources")
         citation_cards(qa["citations"], numbered=True)
     render_meta(qa)
@@ -143,6 +166,9 @@ elif result and result["mode"] == "troubleshoot":
     ts = result["troubleshoot"]
     if not ts["ok"]:
         st.error(f"Could not produce a validated plan: {ts['error']}")
+    elif not ts["result"]["found_in_manuals"]:
+        st.subheader("Answer")
+        render_general(ts)
     else:
         r = ts["result"]
         header = f"Fault {r['fault_code']}" if r["fault_code"] else "Troubleshooting plan"

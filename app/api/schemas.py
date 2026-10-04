@@ -15,6 +15,10 @@ class AskRequest(BaseModel):
     mode: Literal["qa", "troubleshoot"] = "qa"
     retrieval: Literal["hybrid", "vector", "bm25"] = "hybrid"
     top_k: int = Field(default=6, ge=1, le=12)
+    allow_general: bool = Field(
+        default=True,
+        description="If the manuals do not cover the question, also return a clearly separated general-knowledge answer.",
+    )
 
 
 class AskResponse(BaseModel):

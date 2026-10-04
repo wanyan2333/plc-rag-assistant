@@ -161,6 +161,14 @@ def test_unknown_problem_reports_not_found(retriever, settings):
         submit({**VALID, "fault_code": "Z-999", "found_in_manuals": False, "confidence": "low",
                 "summary": "Not found in the provided manuals.", "likely_causes": [], "diagnostic_steps": [], "citations": []}),
     ])
-    response = troubleshoot("Z-999 on the HMI", retriever, llm, settings)
+    response = troubleshoot("Z-999 on the HMI", retriever, llm, settings, allow_general=True)
     assert response.ok and not response.result.found_in_manuals
     assert json.loads(llm.calls[1]["messages"][-1].tool_results[0].content)["found"] is False
+    assert response.general_answer and "Z-999" in response.general_answer
+    assert response.usage["input_tokens"] >= 300  # 2 loop calls + 1 general call (100 each in FakeLLM)
+
+
+def test_no_general_answer_when_manuals_cover_it(retriever, settings):
+    response = troubleshoot("Axis 1 stopped, display shows E-101", retriever, FakeLLM(), settings, allow_general=True)
+    assert response.ok and response.result.found_in_manuals
+    assert response.general_answer is None

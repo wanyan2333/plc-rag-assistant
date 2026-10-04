@@ -59,6 +59,19 @@ def test_unanswerable_question_is_refused(retriever):
     assert result.citations == []
 
 
+def test_fallback_llm_uses_backup_when_primary_fails(retriever):
+    from app.generation.llm import FallbackLLM, LLMError
+
+    def outage(*_):
+        raise LLMError("503 overloaded")
+
+    backup = FakeLLM(script=[fake_response("Apply lockout/tagout first [1].")])
+    llm = FallbackLLM(FakeLLM(script=[outage]), backup)
+    result = answer_question("What must be done before opening the cabinet?", retriever, llm, k=3)
+    assert result.answer.startswith("Apply lockout/tagout")
+    assert len(backup.calls) == 1
+
+
 def test_inline_refs_removes_defs():
     schema = {
         "type": "object",

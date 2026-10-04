@@ -19,13 +19,18 @@ class Settings(BaseSettings):
     )
 
     # LLM
-    llm_provider: Literal["anthropic", "gemini", "fake"] = "anthropic"
+    llm_provider: Literal["anthropic", "gemini", "openrouter", "fake"] = "anthropic"
+    # Backup provider tried when a primary call fails (empty = no fallback)
+    llm_fallback_provider: Literal["", "anthropic", "gemini", "openrouter"] = ""
     anthropic_api_key: str | None = None
     anthropic_model: str = "claude-sonnet-5-5"
     anthropic_effort: Literal["low", "medium", "high"] = "medium"
     anthropic_fallbacks: str = "default"  # "default" enables server-side refusal fallback, "" disables
     gemini_api_key: str | None = None
     gemini_model: str = "gemini-flash-latest"
+    openrouter_api_key: str | None = None
+    openrouter_model: str = "thinkingmachines/inkling:free"
+    openrouter_base_url: str = "https://openrouter.ai/api/v1"
     judge_model: str | None = None  # LLM-as-judge model; defaults to the answer model
     max_output_tokens: int = 4096
     # Optional price override (USD per million tokens) for models not in the built-in table

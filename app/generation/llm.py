@@ -64,6 +64,7 @@ class Message:
     tool_calls: list[ToolCall] = field(default_factory=list)
     tool_results: list[ToolResult] = field(default_factory=list)
     raw: Any = None  # provider-native assistant content, echoed back verbatim
+    raw_provider: str = ""  # which provider produced `raw` (others rebuild from the neutral fields)
 
 
 @dataclass
@@ -88,9 +89,10 @@ class LLMResponse:
     usage: Usage
     model: str
     raw: Any = None
+    provider: str = ""
 
     def as_message(self) -> Message:
-        return Message("assistant", self.text, list(self.tool_calls), raw=self.raw)
+        return Message("assistant", self.text, list(self.tool_calls), raw=self.raw, raw_provider=self.provider)
 
 
 class LLMError(RuntimeError):
@@ -136,6 +138,7 @@ def inline_refs(schema: dict) -> dict:
 # --------------------------------------------------------------------------- Anthropic
 
 class AnthropicLLM:
+    provider = "anthropic"
     FALLBACK_BETA = "server-side-fallback-2026-07-01"
 
     def __init__(self, settings: Settings, model: str | None = None):
@@ -148,12 +151,11 @@ class AnthropicLLM:
         self.max_tokens = settings.max_output_tokens
         self.fallbacks = settings.anthropic_fallbacks.strip()
 
-    @staticmethod
-    def _to_api(messages: list[Message]) -> list[dict]:
+    def _to_api(self, messages: list[Message]) -> list[dict]:
         out = []
         for m in messages:
             if m.role == "assistant":
-                if m.raw is not None:
+                if m.raw is not None and m.raw_provider == self.provider:
                     out.append({"role": "assistant", "content": m.raw})
                 else:
                     content: list[dict] = [{"type": "text", "text": m.text}] if m.text else []
@@ -203,12 +205,16 @@ class AnthropicLLM:
         text = "".join(b.text for b in response.content if b.type == "text")
         calls = [ToolCall(b.id, b.name, dict(b.input)) for b in response.content if b.type == "tool_use"]
         usage = Usage(response.usage.input_tokens, response.usage.output_tokens)
-        return LLMResponse(text, calls, response.stop_reason or "", usage, response.model, raw=response.content)
+        return LLMResponse(
+            text, calls, response.stop_reason or "", usage, response.model, raw=response.content, provider=self.provider
+        )
 
 
 # --------------------------------------------------------------------------- Gemini
 
 class GeminiLLM:
+    provider = "gemini"
+
     def __init__(self, settings: Settings, model: str | None = None):
         from google import genai
         from google.genai import types
@@ -226,7 +232,7 @@ class GeminiLLM:
         out = []
         for m in messages:
             if m.role == "assistant":
-                if m.raw is not None:
+                if m.raw is not None and m.raw_provider == self.provider:
                     out.append(m.raw)
                 else:
                     parts = [types.Part(text=m.text)] if m.text else []
@@ -295,7 +301,132 @@ class GeminiLLM:
             (getattr(meta, "candidates_token_count", 0) or 0) + (getattr(meta, "thoughts_token_count", 0) or 0),
         )
         stop = str(candidate.finish_reason.name if candidate.finish_reason else "")
-        return LLMResponse("".join(texts), calls, "tool_use" if calls else stop, usage, self.model, raw=candidate.content)
+        return LLMResponse(
+            "".join(texts), calls, "tool_use" if calls else stop, usage, self.model,
+            raw=candidate.content, provider=self.provider,
+        )
+
+
+# --------------------------------------------------------------------------- OpenRouter
+
+class OpenRouterLLM:
+    """Any OpenRouter model through its chat-completions API (default: Inkling, free tier).
+
+    Plain httpx keeps this backup path free of extra SDK dependencies.
+    """
+
+    provider = "openrouter"
+
+    def __init__(self, settings: Settings, model: str | None = None):
+        import httpx
+
+        if not settings.openrouter_api_key:
+            raise LLMError("OPENROUTER_API_KEY is not set")
+        self._httpx = httpx
+        self.model = model or settings.openrouter_model
+        self.max_tokens = settings.max_output_tokens
+        self._client = httpx.Client(
+            base_url=settings.openrouter_base_url,
+            headers={
+                "Authorization": f"Bearer {settings.openrouter_api_key}",
+                "X-Title": "PLC Troubleshooting Assistant",
+            },
+            timeout=180,
+        )
+
+    def _to_api(self, system: str, messages: list[Message]) -> list[dict]:
+        out: list[dict] = [{"role": "system", "content": system}]
+        for m in messages:
+            if m.role == "assistant":
+                if m.raw is not None and m.raw_provider == self.provider:
+                    out.append(m.raw)
+                else:
+                    msg: dict[str, Any] = {"role": "assistant", "content": m.text or ""}
+                    if m.tool_calls:
+                        msg["tool_calls"] = [
+                            {"id": c.id, "type": "function", "function": {"name": c.name, "arguments": json.dumps(c.args)}}
+                            for c in m.tool_calls
+                        ]
+                    out.append(msg)
+                continue
+            for r in m.tool_results:
+                content = f"ERROR: {r.content}" if r.is_error else r.content
+                out.append({"role": "tool", "tool_call_id": r.call_id, "content": content})
+            if m.text:
+                out.append({"role": "user", "content": m.text})
+        return out
+
+    def chat(self, system, messages, tools=None, max_tokens=None) -> LLMResponse:
+        body: dict[str, Any] = {
+            "model": self.model,
+            "messages": self._to_api(system, messages),
+            "max_tokens": max_tokens or self.max_tokens,
+        }
+        if tools:
+            body["tools"] = [
+                {"type": "function", "function": {"name": t.name, "description": t.description, "parameters": inline_refs(t.parameters)}}
+                for t in tools
+            ]
+
+        data = None
+        attempts = 5
+        for attempt in range(attempts):
+            try:
+                response = self._client.post("/chat/completions", json=body)
+            except self._httpx.HTTPError as exc:
+                if attempt == attempts - 1:
+                    raise LLMError(f"OpenRouter request failed: {exc}") from exc
+                time.sleep(2 ** (attempt + 1))
+                continue
+            if response.status_code in (429, 500, 502, 503, 504) and attempt < attempts - 1:
+                delay = 2 ** (attempt + 1)
+                log.warning("OpenRouter %s, retrying in %ss", response.status_code, delay)
+                time.sleep(delay)
+                continue
+            if response.status_code != 200:
+                raise LLMError(f"OpenRouter error {response.status_code}: {response.text[:500]}")
+            data = response.json()
+            if "error" in data:  # errors can also arrive with HTTP 200
+                raise LLMError(f"OpenRouter error: {data['error']}")
+            break
+
+        if not data or not data.get("choices"):
+            raise LLMError(f"OpenRouter returned no choices: {str(data)[:300]}")
+        choice = data["choices"][0]
+        message = choice["message"]
+        calls = []
+        for i, tc in enumerate(message.get("tool_calls") or []):
+            try:
+                args = json.loads(tc["function"].get("arguments") or "{}")
+            except json.JSONDecodeError:
+                args = {"_invalid_json": tc["function"].get("arguments")}
+            calls.append(ToolCall(tc.get("id") or f"call_{len(messages)}_{i}", tc["function"]["name"], args))
+        usage_data = data.get("usage") or {}
+        usage = Usage(usage_data.get("prompt_tokens", 0), usage_data.get("completion_tokens", 0))
+        raw = {k: v for k, v in message.items() if k in ("role", "content", "tool_calls", "reasoning_details")}
+        raw.setdefault("content", "")
+        return LLMResponse(
+            message.get("content") or "", calls, "tool_use" if calls else (choice.get("finish_reason") or ""),
+            usage, data.get("model", self.model), raw=raw, provider=self.provider,
+        )
+
+
+# --------------------------------------------------------------------------- fallback
+
+class FallbackLLM:
+    """Tries the primary provider; on failure (outage, rate limit, refusal) uses the backup."""
+
+    def __init__(self, primary: LLM, backup: LLM):
+        self.primary = primary
+        self.backup = backup
+        self.model = primary.model
+
+    def chat(self, system, messages, tools=None, max_tokens=None) -> LLMResponse:
+        try:
+            return self.primary.chat(system, messages, tools, max_tokens)
+        except LLMError as exc:
+            log.warning("Primary LLM (%s) failed: %s - falling back to %s", self.primary.model, exc, self.backup.model)
+            return self.backup.chat(system, messages, tools, max_tokens)
 
 
 # --------------------------------------------------------------------------- Fake
@@ -409,9 +540,17 @@ def _fake_troubleshoot(question: str, messages: list[Message], tools: list[ToolS
 
 # --------------------------------------------------------------------------- factory
 
+_PROVIDERS = {"anthropic": AnthropicLLM, "gemini": GeminiLLM, "openrouter": OpenRouterLLM}
+
+
 def build_llm(settings: Settings, model: str | None = None) -> LLM:
     if settings.llm_provider == "fake":
         return FakeLLM()
-    if settings.llm_provider == "gemini":
-        return GeminiLLM(settings, model)
-    return AnthropicLLM(settings, model)
+    primary = _PROVIDERS[settings.llm_provider](settings, model)
+    backup_name = settings.llm_fallback_provider
+    if backup_name and backup_name != settings.llm_provider:
+        try:
+            return FallbackLLM(primary, _PROVIDERS[backup_name](settings))
+        except LLMError as exc:  # e.g. backup key missing: run without fallback
+            log.warning("Fallback provider %s unavailable: %s", backup_name, exc)
+    return primary

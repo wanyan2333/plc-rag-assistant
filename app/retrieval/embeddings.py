@@ -29,7 +29,10 @@ class SentenceTransformerEmbedder:
         from sentence_transformers import SentenceTransformer  # heavy import, keep lazy
 
         self.name = model_name
-        self._model = SentenceTransformer(model_name)
+        try:  # use the local cache first: avoids slow Hub round-trips on every start
+            self._model = SentenceTransformer(model_name, local_files_only=True)
+        except Exception:
+            self._model = SentenceTransformer(model_name)  # first run: download
         get_dim = getattr(self._model, "get_embedding_dimension", None) or self._model.get_sentence_embedding_dimension
         self.dim = get_dim()
         self._batch_size = batch_size

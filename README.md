@@ -90,7 +90,7 @@ Full report: [eval/results/20261005-075907.md](eval/results/20261005-075907.md) 
 | Concept | 8 |
 | Unanswerable | 5 |
 
-Index: 36 chunks, 31 of them fault-code rows. Embeddings: `BAAI/bge-small-en-v1.5`. Answers and judging: Gemini `gemini-flash-lite-latest` (free tier, Google AI Studio API), top-6 chunks. The same pipeline runs on Claude; this run used Gemini because it was the key available. Items in the question set are flagged `needs_review`.
+Index: 36 chunks, 31 of them fault-code rows. Embeddings: `BAAI/bge-small-en-v1.5`. Answers and judging: Gemini `gemini-flash-lite-latest` (free tier, Google AI Studio API), top-6 chunks. The same pipeline runs on Claude; this run used Gemini because it was the key available. All 29 questions and reference answers have been reviewed by hand. The report header still shows the `needs_review` flags that were cleared after the review; the questions themselves did not change.
 
 **Retrieval (24 answerable questions)**
 
@@ -204,7 +204,7 @@ tests/                 offline pytest suite (synthetic PDF + FakeLLM)
 
 - **Scanned PDFs need OCR.** Text is extracted from the PDF text layer. Older scanned manuals would need an OCR step (e.g. Tesseract via PyMuPDF's OCR support) before chunking.
 - **Table extraction depends on ruled tables.** Fault tables without grid lines, or split across pages without a repeated header, can be missed. A layout model or vendor-specific parsers would make this more robust.
-- **The evaluation set is small and targets fictional demo manuals.** The 29 questions are flagged `needs_review`. Numbers on real vendor manuals (S7-1200, Micro800) will differ. The next step is a reviewed set of ~100 questions per manual family.
+- **The evaluation set is small and targets fictional demo manuals.** The 29 reviewed questions are a sanity check, not a benchmark. Numbers on real vendor manuals (S7-1200, Micro800) will differ. The next step is a reviewed set of ~100 questions per manual family.
 - **Document sources.** Factories keep manuals and work instructions in SharePoint / Microsoft 365. A Microsoft Graph connector with incremental re-ingestion (the pipeline is already idempotent via file fingerprints) would replace the local `data/raw/` folder.
 - **Live alarm context.** The natural next integration is the PLC itself: read active alarms over OPC UA or from the historian/SCADA, then pre-fill the troubleshoot request with the fault code, the module slot and recent events.
 - **Feedback loop.** Let technicians mark steps as "fixed it" or "not relevant". Those labels become new evaluation data and a signal for re-ranking.

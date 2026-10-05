@@ -1,4 +1,5 @@
-# Single-container demo (used for Hugging Face Spaces, works with plain `docker run` too).
+# Single-container demo (port 7860 follows the Hugging Face Spaces convention).
+# Not yet built in CI; see README "Deployment".
 #   docker build -t plc-rag .
 #   docker run -p 7860:7860 -e GEMINI_API_KEY=... plc-rag
 FROM python:3.12-slim

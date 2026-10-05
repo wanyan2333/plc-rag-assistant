@@ -176,9 +176,9 @@ Example API call:
 curl -X POST http://127.0.0.1:8000/ask -H "Content-Type: application/json" -d "{\"question\": \"What does event 16#8085 mean?\", \"mode\": \"qa\", \"retrieval\": \"hybrid\"}"
 ```
 
-## Deployment (Docker / Hugging Face Spaces)
+## Deployment (optional Docker image)
 
-The [Dockerfile](Dockerfile) builds a self-contained demo:
+The [Dockerfile](Dockerfile) describes a self-contained single-container demo:
 - installs CPU-only PyTorch;
 - generates the demo manuals and builds the index at image build time, which also caches the embedding model;
 - runs Streamlit in embedded mode on port 7860.
@@ -193,13 +193,7 @@ docker build -t plc-rag .
 docker run -p 7860:7860 -e GEMINI_API_KEY=your-key plc-rag
 ```
 
-To publish to a Hugging Face Space (Docker SDK), log in once with a write token (`hf auth login`), then run:
-
-```bash
-uv run python -m scripts.deploy_hf_space
-```
-
-The script uploads only git-tracked files, so `.env`, `data/` and personal notes are never included. Add `GEMINI_API_KEY` as a secret in the Space settings, or pass `--set-gemini-secret` to copy it from your local `.env`.
+Status: the single-process mode it uses (`UI_BACKEND=embedded`) and the rate limits are tested. The image itself has not been built yet, because Docker was not available in the development environment. Hosting note: Hugging Face now requires a PRO subscription to run Docker Spaces on CPU hardware, so no public live demo is deployed. The screenshots above show the running app.
 
 ## Configuration
 
@@ -229,8 +223,8 @@ app/
   api/                 main.py, schemas.py
 ui/streamlit_app.py
 eval/                  dataset.jsonl, run.py, metrics.py, judge_prompt.md, results/
-scripts/               demo-manual / test-fixture PDF generator, Hugging Face deploy script
-Dockerfile             single-container demo (Hugging Face Spaces)
+scripts/               PDF generator for demo manuals and the test fixture
+Dockerfile             optional single-container demo (not yet built, see Deployment)
 tests/                 offline pytest suite (synthetic PDF + FakeLLM)
 ```
 

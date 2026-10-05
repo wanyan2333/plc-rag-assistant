@@ -5,7 +5,7 @@ Two backends:
       uvicorn app.api.main:app          # terminal 1
       streamlit run ui/streamlit_app.py # terminal 2
   UI_BACKEND=embedded       run the same FastAPI app in-process (single-process hosting,
-                            e.g. Hugging Face Spaces): streamlit run ui/streamlit_app.py
+                            e.g. one container): streamlit run ui/streamlit_app.py
 """
 
 from __future__ import annotations
